@@ -1,0 +1,13 @@
+/* pages/index/buyCard/buyCard.wxss */
+.writeView {
+  width: 0;
+  height: 0;
+  border: 60rpx solid red;
+  border-top-color: #fff;
+  border-bottom: none;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  transform: rotate(-135deg);
+  top:-12rpx;
+  right:-40rpx;
+}

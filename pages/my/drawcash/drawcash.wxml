@@ -1,0 +1,78 @@
+<i-toast id="toast" />
+<view class=' line-e8'></view>
+<view class='padding30'>
+  <view class='w690 h380 ' style='background-size:cover;background-image:url({{walletBgImg}})'>
+    <view class="h100"></view>
+    <view class='fs30 mgTop50 fc-fff tc'>
+      <text >鼓\t\t励\t\t金</text>
+    </view>
+
+    <view class="tc mgTop20 fs70 fc-ffe87c"><text>{{userInfo.redPacketMoney}}\t元</text></view>
+    <!-- <view class="border-fff w330 h60 lh60 tc mgLeft180 mgTop50 bRadius30 fc-fff">{{userInfo.redPacketMoney}}元</view>
+    <view class="fs20 fc-fff tc mgTop80">
+      <text decode='true' space='true'>—&nbsp;满100元可提现&nbsp;—</text>
+    </view> -->
+  </view>
+</view>
+
+<!-- <view class='mgTop30'>
+  <view class="fl mgLeft30 w325 h80 lh80 tc bRadius40 fs30 fc-ea4b60 border-ea4b60" bindtap='transferBalance'>转存到余额</view>
+  <view class="fl mgLeft30 w325 h80 lh80 tc bRadius40 fs30 fc-ea4b60 border-ea4b60" bindtap='allDrawCash'>全部提现</view>
+</view> -->
+<view class='clearB'></view>
+<view class='w690 mgLeft30 tr mgTop20 fc-999 fs32'><text  bindtap='lookRecord'>兑换记录</text></view>
+
+<view class="w540 mgLeft110 mgTop40 h100 lh100 tc fs32 border-ea4b60 bRadius-50 bg-fff fc-ea4b60" data-status="open" bindtap='openChange'>兑换鼓励金</view>
+
+<view class="fs24 fc-999 mgLeft30 mgTop50">鼓励金使用/兑换规则：</view>
+
+<view class="fs24 fc-999 mgLeft30 lh40 mgTop15">
+  <text>
+    使用规则：
+    1.鼓励金可以抵扣健身消费金额的六分之一，抵扣金额无上限。
+    2.鼓励金可以与折扣券、会员卡等优惠券一起使用。
+    3.鼓励金不可提现、不可转让。
+    4.鼓励金长期有效，将永久保存到您在纯氧健身用户端的个人账户内。
+    兑换规则：
+    1.用户端点击『我的』—[兑换鼓励金]进行兑换。
+    2.兑换的鼓励金将会在24小时内到达您的纯氧账户。
+  </text>  
+</view>
+<!-- <view class="fs24 fc-999 mgLeft30 mgTop15">1.转存到余额不可提现</view>
+<view class="fs24 fc-999 mgLeft30 mgTop15">2.邀请好友、到店打卡均可赚取提现红包</view> -->
+
+<i-modal visible="{{ transfer }}" bind:ok="transferTap" bind:cancel="transferTap">
+  <view>确定转存到余额？</view>
+</i-modal>
+
+<i-modal visible="{{ drawcash }}" bind:ok="drawcashTap" bind:cancel="drawcashTap">
+  <view>确定全部提现？</view>
+</i-modal>
+
+
+<!-- 鼓励金兑换 -->
+<view class="drawer_screen" bindtap="openChange" data-statu="close" wx:if="{{showChange}}"></view>
+<view animation="{{animationData}}" class="drawer_box2" wx:if="{{showChange}}">
+  <view class='mgLeft60 w630 psnR bg-fff bRadius30' style="width:600rpx;height:600rpx;margin-top:5%">
+    <image class='w50 h50 psnA' src="{{closeImg}}" style='right:-20rpx;top:-20rpx;' data-statu="close" bindtap="openChange"></image>
+    <view class='h80'></view>
+    <form bindsubmit='enterChange'>
+      <view class='w540 h80 mgLeft30 fs28 fc-333'>
+        <text class='w120 h80 lh80 dlb fl tr'>编码</text>
+        <view class='w380 mgLeft30 fl border-eee'>
+          <input type='text' name="code" maxlength='12' class=' w340 h80 mgLeft30' placeholder='请输入编码'></input>
+        </view>
+      </view>
+      <view class='w540 h80 mgLeft30 fs28 fc-333 mgTop50'>
+        <text class='w120 h80 lh80 dlb fl tr'>兑换码</text>
+        <view class='w380 mgLeft30 fl border-eee'>
+          <input type='number' name="changecode" maxlength='6' class=' w340 h80 mgLeft30' placeholder='请输入兑换码'></input>
+        </view>
+      </view>
+      <view class='clearB'></view>
+      <view class="fs20 fc-999 tc mgTop50">
+        <button form-type="submit" class='w380 h80 lh80 mgLeft110 mgTop30 tc fs32 fc-fff bg-28d7cc bRadius40'>申请兑换</button>
+      </view>
+    </form>
+  </view>
+</view>

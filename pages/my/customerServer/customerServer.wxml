@@ -1,0 +1,14 @@
+<view class='line-e8 wth100 psnF left0 top0'></view>
+<view class='padding50'>
+  <view class="fs28 fc-666 mgTop15">常见问题</view>
+  <block wx:for="{{data}}" wx:for-item="v" wx:key="index">
+    <view class='fs24 h40 lh40 fc-666 mgTop30'>{{v.question}}</view>
+  <view class='fs24 h40 lh40 fc-999 mgTop15'>答：{{v.answer}}</view>
+  </block>
+</view>
+
+
+<view class="mgTop150 fc-28d7cc tc" bindtap='callPhone'> 
+<image class=" paddingR20" style='height:36rpx;width:44rpx;' src="/images/index/detail/phone.png"></image>
+<text class='fs40 fontB'>028-62084560</text>
+</view>

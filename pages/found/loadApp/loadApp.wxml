@@ -1,0 +1,10 @@
+<view class="tc">
+  <image class='mgTop30' style="width:360rpx;height:460rpx;" src="{{practiceImg}}"></image>
+</view>
+<view class='padding50'>
+  <view class='h40 lh40 fs30 fc-444'>尊敬的用户：</view>
+  <view class=' lh50 fs28 fc-666 mgTop15'>由于微信小程序功能的局限性，无法上传视频，请下载功能更强大的APP客户端。
+  </view>
+  <view class='h50 lh50 fs28 fc-28d7cc'>下载app获得更多红包惊喜！</view>
+  <view class='fs32 fontB fc-444 lh60'>请前往{{appName}}搜索“纯氧健身”进行软件下载</view>
+</view>

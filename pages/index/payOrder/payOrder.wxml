@@ -1,0 +1,149 @@
+<!-- 只有文本轻提示 -->
+<i-toast id="toast" />
+
+<view class='w690 mgLeft30 mgTop30'>
+  <view class="padding30  bRadius20 bg-fff">
+    <view class="fs28 fc-28d7cc">订单编号：{{servers.orderBuyService}}</view>
+
+    <view class="lh40 mgTop20 fs24 fc-666">有效期：</view>
+    <view class="lh50 fs24 fc-ffa541">{{servers.starttime}}\t至\t{{servers.endtime}}</view>
+    <!-- <view class="mgTop50 fs24 fc-ffa541">使用时间：{{startTime}}\t至\t{{endTime}}</view> -->
+    <view class='mgTop20 fs36 fc-28d7cc'>{{servers.name}}
+      <view class='fr fc-ff6857'>
+        <!-- <text class='fs24 fc-444'>实付：</text> -->{{money}}
+        <text class="fs26">¥</text>
+      </view>
+    </view>
+    <view class='fs24 fc-666 mgTop20'>会员已优惠
+      <text class="fr">{{vipDiscounts}}元</text>
+    </view>
+    <view class=" mgRight30 fs24 fc-444 mgTop20">
+      <image class='w25 h25' src="{{useImg2}}"></image>
+      <text class=' mgLeft15'> 随时退</text>
+      <image class='w25 h25 mgLeft40' src="{{useImg2}}"></image>
+      <text class=' mgLeft15'> 过期自动退</text>
+      <image class='w25 h25 mgLeft40' src="{{useImg2}}"></image>
+      <text class=' mgLeft15'> 放心使用</text>
+    </view>
+    <view class='w630 line-e8  mgTop50'></view>
+    <view class="mgTop30 fs28 fc-444">
+      <image class="w30 h25  paddingR20" src="{{order}}"></image>
+      <text>{{servers.fitnessName}}</text>
+    </view>
+    <view class="mgTop15 fs24 fc-999">
+      <image class=" h30  paddingR20" style='width:25rpx;' src="{{address}}"></image>
+      <text>{{servers.fitnessAddress}}</text>
+    </view>
+
+
+  </view>
+</view>
+
+<view class='clearB'></view>
+<view class='padding30'>
+  <view class="h60 lh60 fs26 fc-999">支付后请在我的订单中查看</view>
+  <view class='fs24 fc-999 h60 lh60'>
+    <image class="w25 h25 paddingR20" src="{{waring}}"></image>
+    <text class="">会员最高享9折优惠</text>
+  </view>
+  <view wx:if="{{useExplain && useExplain.length>0}}" class="fs28 fc-444 h40 lh40 mgTop30">活动使用说明</view>
+
+  <!-- 活动说明 -->
+  <block wx:for="{{useExplain}}" wx:key="" wx:for-item="v">
+    <view class='w690 h60 lh60 fc-28d7cc fs24'>{{v.useExplainName}}</view>
+    <block wx:if="{{v.status>2}}" wx:for="{{v.textArr}}" wx:key="">
+      <view class='lh40'>
+        <image class="fl bRadius50 bg-9d mgTop15" style='width:10rpx;height:10rpx;'></image>
+        <view class='fl mgLeft15 w650 fs24 fc-666 '>{{item}}</view>
+      </view>
+      <view class="clearB"></view>
+    </block>
+    <view wx:if="{{v.status==2 || v.status==1}}">
+      <image class="fl bRadius50 bg-9d mgTop15" style='width:10rpx;height:10rpx;'></image>
+      <view class='fl mgLeft15 w650 fs24 fc-666 '>{{v.textArr[0]}}-{{v.textArr[1]}}</view>
+      <view class="clearB"></view>
+    </view>
+  </block>
+  <view class='w690 h60 lh60 fc-28d7cc fs24'>温馨提示</view>
+  <view>
+    <image class="fl bRadius50 bg-9d mgTop15" style='width:10rpx;height:10rpx;'></image>
+    <view class='fl mgLeft15 w650 fs24 fc-666 '>为了保障您的收益，建议您使用纯氧健身平台APP线上支付，其他支付方式导致纠纷，纯氧健身平台不承担任何责任，感谢您的理解和支持！</view>
+    <view class="clearB"></view>
+  </view>
+  <!-- <block wx:for="{{depict}}" wx:key="">
+    <view class='fs24 fc-999 lh40 mgTop10'>
+      <text decode='true' space='true' class="">{{item}}</text>
+    </view>
+  </block> -->
+
+  <view class=" mgTop50 fs32 fc-444">选择支付方式</view>
+  <block wx:for="{{payType}}" wx:for-item="v" wx:key="index">
+    <view class="w690 mgTop60 line-ccc {{index>0?'db':'dn'}}"></view>
+    <view class="mgTop50 " data-index="{{index}}" data-method="{{v.payMethod}}" bindtap='checkPayType'>
+      <image class='fl mgTop10 w40 h40' src="{{v.img}}"></image>
+      <text class='mgLeft20  fs26 fc-444'>{{v.text}}</text>
+      <image class="fr mgTop15 w36 h36" src="{{v.checked?checked:noChecked}}"></image>
+      <text class="fr mgTop15 fs30 fc-28d7cc paddingR20 {{index>0?'dn':'dlb'}}">{{balance}}<text class='fs24'>¥</text></text>
+    </view>
+    <view class="clearB"></view>
+  </block>
+</view>
+<view class='h175'></view>
+<!-- 显示结算明细 -->
+<view wx:if="{{showMoneyDetail}}" class='wth100 h550 psnF left0 bottom150 bg-fff'>
+  <view class='h80 lh80 tc fs32 fc-444'>结算明细</view>
+  <view class='w690 mgLeft30 h80 lh80 mgTop30'>
+    <text class='fs28 fc-444'>单次健身</text>
+    <view class='w280 fr'>
+      <view class='fl mgTop20 mgLeft40 w80 h36 lh35 tc fs20 fc-fff bg-28d7cc'>价格</view>
+      <text class='fr fc-333 fs28 mgRight30'>{{money}}元</text>
+    </view>
+  </view>
+  <!-- 会员卡 -->
+  <view class='w690 mgLeft30 h80 lh80 mgTop30'>
+    <text class='fs28 fc-444'>会员卡</text>
+    <view class='w280 fr'>
+      <view class='fl mgTop20 mgLeft40 w80 h36 lh35 tc fs20 fc-fff bg-28d7cc'>折扣</view>
+      <text class='fr fc-ff6857 fs28 mgRight30'>-{{vipDiscounts}}元</text>
+    </view>
+  </view>
+  <view class='w690 mgLeft30 h80 lh80 mgTop30' bindtap='toUseVoucher'>
+    <text class='fs28 fc-444'>抵用券</text>
+    <view class='w280 fr'>
+      <view class='fl mgTop20 mgLeft40 w80 h36 lh35 tc fs20 fc-fff bg-28d7cc'>抵用</view>
+      <image class='fr mgTop30' style='width:16rpx;height:26rpx;' src="/images/public/pay_icon_war_j@2x.png"></image>
+      <text class='fr fc-ff6857 fs28' style='margin-right:14rpx;'>{{voucherDetail.money?"-"+voucherDetail.money+"元":"0个可用"}}</text>
+    </view>
+  </view>
+  <!-- 鼓励金 -->
+  <view class='w690 mgLeft30 h80 lh80 mgTop30'>
+    <text class='fs28 fc-444'>鼓励金</text>
+    <view class='w280 fr'>
+      <view class='fl mgTop20 mgLeft40 w80 h36 lh35 tc fs20 fc-fff bg-28d7cc'>使用</view>
+      <text class='fr mgRight30 fc-ff6857 fs28'>-{{inciteMoney}}元</text>
+    </view>
+  </view>
+</view>
+<!-- 底部金额、支付按钮 -->
+<view class='h150 wth100 psnF left0 bottom0 bg-fff'>
+  <view class="w690 mgLeft30 h150  " style='border-top:1rpx #e8e8e8 solid;'>
+    <view class='w400 fl mgTop25'>
+      <view class='h60 psnR'>
+        <view class="dlb h60 w60 fs28 fc-444 paddingR20 psnA left0 bottom020">共计</view>
+        <view class='w300 h60 psnA left80 bottom0' data-status="{{status}}" bindtap='useVoucher'>
+          <text class="fs24 fc-28d7cc">¥</text>
+          <text class="fs46 fc-28d7cc mgLeft10">{{voucherMoney}}</text>
+          <view class='dlb w60 h60 mgLeft10'>
+            <image class='fl mgLeft15' style='width:30rpx;height:16rpx;margin-top:35rpx;' src="{{showMoneyDetail?downImg:upImg}}"></image>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{!(voucherMoney == money) }}" class='fs24 fc-ff6857 dlb' style='margin-left:80rpx;'>（已优惠）</view>
+    </view>
+
+    <view class="fr bg-28d7cc  mgTop35 bRadius40 w280 h80 lh80 fs32 fc-fff tc" bindtap='nowPayMoney'>立即支付</view>
+  </view>
+</view>
+
+<!-- 显示优惠券 -->
+<view></view>

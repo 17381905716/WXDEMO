@@ -1,0 +1,33 @@
+<!--  健身房模板 -->
+<template name="fitness">
+  <view class='w690 bg-fff  bRadius20 mgTop30 psnR'>
+    <image class="w330 h60 psnA top0 right0" src="/images/dynamic/white@2x.png"></image>
+    <image class='w100 h100 psnA right0' style='top:44rpx' src="{{stateBusiness==1?openImg:(stateBusiness==2 || stateBusiness==3)?closeImg:''}}"></image>
+    <image class="w690 h380 bRadius20 " mode="aspectFill" bindload='loadSuccess' data-indeximg="{{fitnessIndexImg}}" data-number="{{fitnessNumber}}" src="{{fitnessIndexImg?fitnessIndexImg:noDataImg1}}" bindtap='toDetail'></image>
+    <view class="w630  mgLeft30">
+      <view class="h60 lh60">
+        <text class="fl dlb w340 fs28 fc-333 omit">{{fitnessName}}</text>
+        <view class='fr dlb'>
+          <image class="markImg mgLeft15 mgTop20" src="/images/index/home_icon_ad@3x.png"></image>
+          <text class="fs28 fc-666 ">距离：{{distance}}km</text>
+        </view>
+      </view>
+      <view class='clearB'></view>
+      <view>
+        <text class='fs24 fc-666 '>综合评分</text>
+      <block wx:for="{{array}}" wx:key="">
+        <image class='w25 h25 mgLeft15' src="{{level>index?starImg:noStarImg}}"></image>
+      </block>
+      </view>
+      <!-- 健身房活动 -->
+      <block wx:for="{{fitnessActivities}}" wx:key="">
+        <view class="h60 lh60 fs24 fc-666 {{index > 0 ?'dn':'db'}}">
+          <image class='fl mgTop15 w32 h32 paddingR20' src="/images/public/home_icon_act@3x.png" style=''></image>
+          {{item.fitnessActivityName}}
+          <text class='fr fc-ff6857'>{{item.fitnessActivityPrice}}元</text>
+        </view>
+      </block>
+    </view>
+    <view class='h20'></view>
+  </view>
+</template>

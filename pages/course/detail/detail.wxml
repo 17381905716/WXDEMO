@@ -1,0 +1,50 @@
+<i-toast id="toast" />
+<view class='line-e8 wth100 psnF left0 top0'></view>
+<view class='mgTop100 tc psnR'>
+  <image wx:if="{{courseDetail.vipType==1}}" class='w60 h60 psnA' style='top:-26rpx;left:394rpx;' src="{{memberImg}}"></image>
+  <!-- <image class='w32 h25 fl mgLeft15' style='margin-top:8rpx;' src="{{crownImg}}"></image> -->
+  <image class="w130 h130 bRadius50 " src="{{courseDetail.headImg}}" data-num="{{courseDetail.userNumber}}" bindtap='lookOtherPage'></image>
+</view>
+<view class='mgTop30 tc'>
+  <view class="w162 h60 lh60 dlb tc border-28d7cc bRadius30 fs28 fc-28d7cc" data-usernumber="{{courseDetail.userNumber}}" data-about="{{courseDetail.isFollow}}" bindtap='about'>{{courseDetail.isFollow ==1?'已关注':'关注'}}</view>
+</view>
+<view class='w690 mgLeft30 mgTop30 line-e8'></view>
+<view class='padding30 '>
+  <text class='dlb w620 omit fs30 fc-444'>{{courseDetail.courseTitle}}</text>
+  <view class='fr w60 lh60 tc' data-collect="{{courseDetail.isCollect}}" data-num="{{courseDetail.courseNumber}}" bindtap='collectCourse'>
+    <image class="w34 h32" src="{{courseDetail.isCollect ==1 ? fullStar: halfStar}}"></image>
+  </view>
+</view>
+<view class="fs26 fc-999 lh40 newLine padding_0_30">{{courseDetail.courseDescription}}</view>
+<!-- <view class='padding_20_30'  bindtap='toPlayDetail'>
+  <image class='w690 h380 bRadius20 ' ></image>
+</view>
+<view class="fs28 fc-666 mgLeft30">瑜伽减压放松</view>
+<view class='fs24 fc-999 padding_20_30'>课程将在肩背放松中缓解伏案工作的僵硬，在力量平衡中训练专注力。</view> -->
+
+<block wx:for="{{videoData}}" wx:for-item="v" wx:key="index">
+  <view class='w690 mgLeft30 mgTop50 line-e8'></view>
+  <view class='fs30 fc-444 mgLeft30 mgTop30'>{{v.classTitle}}</view>
+  <view class='w690 padding30' data-id="{{v.classId}}" data-index="{{v.classIndex}}" data-num="{{v.classNumber}}" bindtap='toPlayDetail'>
+    <view class="fl dlb psnR">
+      <image class="fl w230 h150 bRadius15" src="{{v.classHeadUrl}}"></image>
+      <!-- <image class="w80 h80 psnA" style='top:35rpx;left:75rpx;' src="{{playBtn}}"></image> -->
+    </view>
+    <view class='w400 fl h80  mgTop20 mgLeft30'>
+      <view class="h80 lh40 newLine fs26 fc-666">{{v.classDescription}}</view>
+      <view class="fs24 fc-ccc ">
+        <image class='fl w30 h30 paddingR20 vMiddle' src="{{playImg}}"></image>
+        <text>{{v.classPlay}}次</text>
+        <view class="fr ">
+          <image class='w30 h30 paddingR20 vMiddle' src="{{likeNumImg}}"></image>
+          <!-- <image class='w30 h30 paddingR20' data-id="{{v.classId}}" bindtap='likeVideo' src="{{v.praiseList == null?halfLike:fullLike}}"></image> -->
+          <text class="paddingR60">{{v.classPraise}}</text>
+          <image class='w30 h30 paddingR20 vMiddle' src="{{comment}}"></image>
+          <text>{{v.commentCount}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='clearB'></view>
+</block>
+<view class="h40"></view>

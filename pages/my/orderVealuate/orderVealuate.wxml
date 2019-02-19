@@ -1,0 +1,135 @@
+<i-toast id="toast" />
+<view class='line-e8 wth100 psnF left0 top0'></view>
+<!-- <view class='psnR'>
+  <view style='height:430rpx' class=" w690 mgLeft30 mgTop40 psnR bRadius15 fc-666 border-eee" bindtap="powerDrawer" data-id="{{v.buyServiceId}}" data-statu="open">
+    <view class="h100 lh100 fs28 tl mgLeft30 fc-444">单次健身卡
+      <view class="fr mgRight30 ">
+        <text class="fs24 paddingR20 fc-999">有效期：{{orderInfo.useStopTime}}</text>
+        <image class='w30 h30' src="{{askImg2}}"></image>
+      </view>
+    </view>
+    <view class='clearB'></view>
+    <view class="h50 lh50 fs46 tc fc-28d7cc">{{orderInfo.buyServiceNumber}}</view>
+    <view class='h50 lh50 fs28 mgLeft30 mgTop30 '>{{orderInfo.fitnessActivityName}}
+      <text class="fs20 {{orderInfo.fitnessWeek?'dlb':'dn'}}">\t\t（{{orderInfo.fitnessWeek}}可用）</text>
+      <view class="fr mgRight30">{{orderInfo.payServiceMoney}}¥
+      </view>
+    </view>
+    <view class='w630 mgLeft30 mgTop10'>
+      <image class="" style="width:22rpx;height:20rpx;" src="{{nameImg2}}"></image>
+      <text class="fs24 mgLeft15 ">{{orderInfo.fitnessName}}</text>
+    </view>
+    <view class='w630 mgLeft30 '>
+      <view class="fl">
+        <image class=" fl mgTop10" style="width:18rpx;height:22rpx;" src="{{addressImg2}}"></image>
+        <text class="fl w590 dlb lh40 fs24 mgLeft15 fc-999">{{orderInfo.fitnessAddress}}</text>
+      </view>
+    </view>
+    <view class='clearB'></view>
+    <view class="w630 mgLeft30 h50 lh40 fc-444">
+      <image class='w20 h20' src="{{useImg2}}"></image>
+      <text class='fs20 mgLeft15'> 随时退</text>
+      <image class='w20 h20 mgLeft40' src="{{useImg2}}"></image>
+      <text class='fs20 mgLeft15'> 过期自动退</text>
+      <image class='w20 h20 mgLeft40' src="{{useImg2}}"></image>
+      <text class='fs20 mgLeft15'> 放心使用</text>
+    </view>
+  </view>
+</view>
+<view class='h20 bg-eee mgTop50'></view> -->
+
+<!-- 留言反馈 -->
+<form bindsubmit='saveVealuate'>
+  <view class="w690 h260 mgTop50 mgLeft30 psnR ">
+    <textarea name="content" class="w650 h220 bRadius20 border-e8 padding20 bg-f8  fc-666 fs28 lh40" maxlength='100' placeholder-class='fc-ccc fs28' placeholder='您的评价，别的顾客很期待哦~' value="{{value}}" bindinput='getCont'></textarea>
+    <view class="psnA  right20 bottom0 fs30 fc-999">
+      <text class='fr'>{{num}}/100</text>
+    </view>
+    <image class="w30 h25 psnA {{num>0?'dn':'dlb'}}" style='right:30rpx; top:30rpx;' src="/images/my/personaldata_icon_edit@3x.png"></image>
+  </view>
+  <view class='clearB'></view>
+
+  <!-- 已上传的图片 -->
+  <block wx:for="{{imgList}}" wx:key="">
+    <view class='fl w185 h185 dlb psnR mgTop50 mgLeft30'>
+      <image class='w40 h40 psnA ' src="{{deleteImg}}" style='top:-15rpx;right:-15rpx;' data-imgsrc="{{item}}" bindtap='deleteImg'></image>
+      <image class='w185 h185 ' src="{{item}}" bindtap='previewImage'></image>
+    </view>
+  </block>
+  <!-- 选择新图片上传 -->
+  <view wx:if="{{imgList.length<3}}" class='fl tc  w185 h185 lh185 mgTop50 mgLeft30 bRadius20 border-e8' bindtap='chooseImage'>
+    <image class='w50 h50 ' src="{{addImg}}"></image>
+  </view>
+  <view class='clearB'></view>
+  <view class='h20 bg-eee mgTop50'></view>
+  <view class='fs32 fontB mgTop50  mgLeft30'>星级评分</view>
+  <block wx:for="{{typeArr}}" wx:key="" wx:for-item="v">
+    <view class=' tl y-center mgLeft30 mgTop30'>
+      <text class='fs28 fc-666 dlb w145'>{{v.name}}</text>
+      <block wx:for="{{array}}" wx:key="">
+        <image class='w38 h36 mgLeft25 ' src="{{v.num >index? starImg: noStarImg}}" data-index="{{index}}" data-type="{{v.type}}" bindtap='checkedStar'></image>
+      </block>
+    </view>
+  </block>
+  <button style='border-radius:50rpx;margin-left:160rpx;' form-type='submit' class='w420 bRadius35 mgLeft120 mgTop50 fs36 h100 lh100 tc fc-fff bg-28d7cc' disabled='{{disabled}}'>提交</button>
+  <view class='h30'></view>
+</form>
+
+
+<!-- 订单帮助 -->
+<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="drawer_box2" style='margin-top:-25%;' wx:if="{{showModalStatus}}">
+  <view class='mgLeft60 w630  bg-fff bRadius30' style="width:600rpx;height:900rpx;">
+    <view class="padding30">
+      <view class="fs24 fc-28d7cc">订单编号：{{helpData.buyServiceNumber}}</view>
+
+      <view class="lh40 mgTop20 fs24 fc-666">使用时间：</view>
+      <view class="lh40 fs24 fc-ffa541">{{helpData.useStartTime}}\t至\t{{helpData.useStopTime}}</view>
+      <view class='mgTop20 fs32 fc-28d7cc'>
+        <view class='fl lh40'>{{helpData.fitnessActivityName}}</view>
+        <view class='fr mgLeft15 lh40 fc-ff6857'>
+          <text class='fs24 fc-444'>实付：</text>{{helpData.payServiceMoney}}
+          <text class="fs26">¥</text>
+        </view>
+      </view>
+      <view class='clearB'></view>
+      <view class='fs24 fc-666 mgTop20'>会员已优惠
+        <text class="fr">{{helpData.vipDiscounts}}元</text>
+      </view>
+    </view>
+    <view class=" mgLeft30 h40 lh40 fc-444">
+      <image class='w20 h20' src="{{useImg2}}"></image>
+      <text class='fs20 mgLeft15'> 随时退</text>
+      <image class='w20 h20 mgLeft40' src="{{useImg2}}"></image>
+      <text class='fs20 mgLeft15'> 过期自动退</text>
+      <image class='w20 h20 mgLeft40' src="{{useImg2}}"></image>
+      <text class='fs20 mgLeft15'> 放心使用</text>
+    </view>
+    <view class='clearB'></view>
+
+    <view class='padding30'>
+      <view class='line-e8 '></view>
+      <view class="mgTop30 fs28 fc-444">
+        <image class="w30 h25  paddingR20" src="{{order}}"></image>
+        <text>{{helpData.fitnessName}}</text>
+      </view>
+      <view class="mgTop15 fs24 fc-999">
+        <image class="fl mgTop10 h30 " style='width:25rpx;height:30rpx;' src="{{address2}}"></image>
+        <text style='width:400rpx;margin-left:25rpx;' class='fl dlb lh35 mgTop10'>{{helpData.fitnessAddress}}</text>
+      </view>
+      <view class='clearB'></view>
+      <view class='line-e8 mgTop20'></view>
+      <view class="h40 lh40 mgTop20 fs26 fc-999">请尽快到店扫码使用</view>
+      <view class='fs24 fc-999 h60 lh60'>
+        <image class="w25 h25 paddingR20" src="{{waring}}"></image>
+        <text class="">会员最高享9折优惠</text>
+      </view>
+      <view class="fs28 fc-444 h40 lh40 mgTop30">活动说明</view>
+      <view class='fs24 h200 lh40 fc-999 mgTop10'>
+        <block wx:for="{{helpData.represent}}" wx:key="">
+          <view>{{item}}</view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>

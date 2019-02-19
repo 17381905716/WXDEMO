@@ -1,0 +1,13 @@
+Page {
+  position: absolute;
+  font-size: 36rpx;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: #FAFAFA;
+  overflow-y: hidden;
+}
+
+scroll-view {
+  height: 100%;
+}

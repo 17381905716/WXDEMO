@@ -1,0 +1,16 @@
+<view class="wth100 line-e8 psnF left0 top0"></view>
+<i-toast id="toast" />
+<!-- 留言反馈 -->
+<form bindsubmit='feedback'>
+  <view class='mgLeft30 h100 lh100 fs32 fc-666'>对"纯氧"说几句话吧~</view>
+  <view class="w690 h450 mgLeft30 psnR bRadius20 border-e8 bg-f8">
+    <textarea name="content" class="w650 h400  padding20   fc-666 fs28 lh40" maxlength='500' placeholder-class='fc-ccc fs28' placeholder='写下您的建议，我们心与心交流~' value="{{value}}" bindinput='getCont'></textarea>
+    <view class="fr mgTop15 fs30 fc-999">
+      <text class='fr'>{{num}}/500</text>
+    </view>
+    <image class="w30 h25 psnA {{num>0?'dn':'dlb'}}" style='right:30rpx; top:30rpx;' src="/images/my/personaldata_icon_edit@3x.png"></image>
+  </view>
+    <view class='clearB'></view>
+    <!-- <button form-type='submit' class='w690 mgLeft30 mgTop100 fs36 h100 lh100 tc fc-fff bg-28d7cc' disabled='{{disabled}}'>保存</button> -->
+    <button style='border-radius:50rpx;margin-left:160rpx;' form-type='submit' class='w420 bRadius35 mgLeft120 mgTop100 fs36 h100 lh100 tc fc-fff bg-28d7cc' disabled='{{disabled}}'>提交</button>
+</form>

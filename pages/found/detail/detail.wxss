@@ -1,0 +1,89 @@
+/* pages/found/detail/detail.wxss */
+
+.vw100{
+  width: 100vw;
+}
+.mgTop8{
+  margin-top: 8rpx;
+}
+.padRight20{
+  padding-right: 20rpx;
+}
+.padRight60{
+  padding-right: 60rpx;
+}
+.pad_0_30{
+  padding:0 30rpx;
+}
+.pad_30_10{
+  padding:30rpx 10rpx;
+}
+.fs12{
+  font-size:12rpx;
+}
+.fs16{
+  font-size:16rpx;
+}
+.fs20{
+  font-size:20rpx;
+}
+
+.w44{
+  width: 44rpx;
+}
+.w72{
+  width: 72rpx;
+}
+.w84{
+  width: 84rpx;
+}
+.w156{
+  width: 156rpx;
+}
+.w220{
+  width: 220rpx;
+}
+.w480{
+  width: 480rpx;
+}
+.w590{
+  width: 590rpx;
+}
+.h44{
+  height:44rpx;
+}
+.h62{
+  height:62rpx;
+}
+.h72{
+  height:72rpx;
+}
+.h84{
+  height:84rpx;
+}
+.h230{
+  height:230rpx;
+}
+.h450{
+  height:450rpx;
+}
+/* 热门推荐图片样式 */
+.hotImg{
+  width:220rpx;
+  height:230rpx;
+  border-top-left-radius:15rpx;
+  border-top-right-radius:15rpx;
+}
+/* 回复样式 */
+.anserBg{
+  /* background:#f6f6f6; */
+  font-size:22rpx;
+  padding:0 20rpx 0 30rpx
+}
+/* 底部进行评论 */
+.btmView{
+  padding:10rpx 30rpx ;
+  height:70rpx;
+  line-height:70rpx;
+  background: #efefef;
+}

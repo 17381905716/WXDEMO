@@ -1,0 +1,21 @@
+<view class='line-e8 wth100 psnF left0 top0'></view>
+<!-- 我的关注和关注我的 -->
+<block wx:for="{{select}}" wx:for-item="v" wx:key="index">
+  <view class="wth50 h100 lh100 tc fl fs28 {{v.checked == true?'line-28d7cc fc-28d7cc':'fc-666'}}" data-type="{{v.type}}" bindtap='select'>{{v.text}}</view>
+</block>
+<view class='clearB'></view>
+<view class=' line-e8'></view>
+<view wx:if="{{myAtent.length>0 && !noData}}" wx:for="{{myAtent}}" wx:for-item="v" wx:key="index">
+  <view class="fl wth25 h200 tc mgTop30">
+    <image class="w100 h100 bRadius50" src="{{v.headImg}}" data-num="{{v.userNumber}}" bindtap='lookOtherPage'></image>
+    <view class="w150 mgLeft20 omit fs26 fc-999 mgTop15">{{v.nickName}}</view>
+    <view class="fs20 fc-999 mgTop10">{{v.date}}</view>
+  </view>
+</view>
+
+<view wx:if="{{noData}}" class="marginTop30">
+  <view>
+    <image class="w280 h220 mgLeft235" src="{{myFollow}}"></image>
+  </view>
+  <view class="fs28 fc-999 tc mgTop20">{{noDataText}}</view>
+</view>

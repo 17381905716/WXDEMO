@@ -1,0 +1,149 @@
+<!-- 只有文本轻提示 -->
+<i-toast id="toast" />
+<view class='line-e8 wth100 psnF left0 top0'></view>
+<scroll-view scroll-y="{{!showModalStatus}}" bindscrolltolower="onReachBottom">
+  <i-tabs current="{{ current_tab }}" color="#28d7cc" scroll bindchange="changeScroll">
+    <block wx:for="{{orderType}}" wx:key="">
+      <i-tab class="mgLeft30" key="{{item.type}}" title="{{item.name}}"></i-tab>
+    </block>
+  </i-tabs>
+  <block wx:for="{{orderData}}" wx:for-item="v" wx:key="index">
+    <view class='psnR'>
+      <view style='height:520rpx' class=" w690 mgLeft30 mgTop30 bRadius15 {{v.buyServiceType==2?'bg-28d7cc fc-fff':' fc-666 bg-fff border-eee'}}">
+        <view class="h100 lh100 fs28 mgLeft30 {{v.buyServiceType==2?' fc-fff':' fc-444'}}">单次健身卡
+          <view class="fr ">
+            <text class="fs24 {{v.buyServiceType==2?'fc-fff':' fc-999'}}">有效期：{{v.useStopTime}}</text>
+            <!-- //帮助小图标 -->
+            <view class='w80 h80 lh80 fr  mgTop10' bindtap="powerDrawer" data-id="{{v.buyServiceId}}" data-statu="open">
+              <!-- <image class='w36 h36 mgTop20 mgLeft15' src="{{helpImg}}"></image> -->
+              <image class='w30 h30 mgLeft25 mgTop30' src="{{v.buyServiceType==2?askImg1:askImg2}}"></image>
+            </view>
+            <!-- <image class='w30 h30' src="{{v.buyServiceType==2?askImg1:askImg2}}"></image> -->
+          </view>
+        </view>
+        <view class='clearB'></view>
+        <view class="h50 lh50 fs46 tc {{v.buyServiceType==2 ? 'fc-fff3bb ':'fc-28d7cc'}}">{{v.buyServiceNumber}}</view>
+        <view class='h50 lh50 fs28 mgLeft30 mgTop30 '>{{v.fitnessActivityName}}
+          <text class="fs20 {{v.fitnessWeek?'dlb':'dn'}}">\t\t（{{v.fitnessWeek}}可用）</text>
+          <view class="fr mgRight30">{{v.payServiceMoney}}
+            <text class="24">¥</text>
+          </view>
+        </view>
+        <view class='w630 mgLeft30 mgTop10'>
+          <image class="" style="width:22rpx;height:20rpx;" src="{{v.buyServiceType==2?nameImg1:nameImg2}}"></image>
+          <text class="fs24 mgLeft15 ">{{v.fitnessName}}</text>
+        </view>
+        <view class='w630 mgLeft30 '>
+          <view class="fl">
+            <image class=" fl mgTop10" style="width:18rpx;height:22rpx;" src="{{v.buyServiceType==2?addressImg1:addressImg2}}"></image>
+            <text style='width:450rpx;' class="fl dlb  fs24 mgLeft15 {{v.buyServiceType==2?'fc-fff':' fc-999'}}"> 
+            <text class="fl dlb lh40 omit w420">{{v.fitnessAddress}}</text>
+            <!-- <text class='fl mgLeft15'>></text> -->
+            </text>
+          </view>
+          <image class="psnA {{v.buyServiceType==2?'dn':'dlb'}}" style='width:110rpx;height:110rpx;right:30rpx;bottom:0rpx;' src="{{v.statusImg}}"></image>
+        </view>
+        <view class='clearB'></view>
+        <view class="w630 mgLeft30 h50 lh50 {{v.buyServiceType==2?'fc-fff':'fc-444'}}">
+          <image class='w20 h20' src="{{v.buyServiceType==2?useImg1:useImg2}}"></image>
+          <text class='fs20 mgLeft15'> 随时退</text>
+          <image class='w20 h20 mgLeft40' src="{{v.buyServiceType==2?useImg1:useImg2}}"></image>
+          <text class='fs20 mgLeft15'> 过期自动退</text>
+          <image class='w20 h20 mgLeft40' src="{{v.buyServiceType==2?useImg1:useImg2}}"></image>
+          <text class='fs20 mgLeft15'> 放心使用</text>
+        </view>
+        <view class="w400 mgLeft150 mgTop30 h80 lh80 tc fs32 bRadius40 {{v.buyServiceType==2?'bg-fff3bb fc-28d7cc':'bg-28d7cc fc-fff'}}" data-longitude="{{v.fitnessLongitude}}" data-latitude="{{v.fitnessLatitude}}" data-name="{{v.fitnessName}}" data-address="{{v.fitnessAddress}}"
+          data-type="{{v.buyServiceType}}" data-num="{{v.fitnessNumber}}" bindtap='buyAgain'>{{v.buyServiceType==2?'地图导航':'再次购买'}}</view>
+      </view>
+      <view style='right:60rpx;bottom:140rpx;' class="psnA fs20 tc fr w130 h50 lh50 bRadius25 bg-fff fc-28d7cc {{v.buyServiceType==2?'dlb':'dn'}}" data-id="{{v.buyServiceId}}" data-num="{{v.buyServiceNumber}}" bindtap='orderRefund'>取消订单</view>
+      <view style='right:60rpx;bottom:140rpx;' class="psnA fs20 tc fr w130 h50 lh50 bRadius25 bg-ff6857 fc-fff {{v.buyServiceType==4?'dlb':'dn'}}" data-id="{{v.buyServiceId}}" data-num="{{v.buyServiceNumber}}" bindtap='commentFitness'>待评价</view>
+
+
+    </view>
+  </block>
+  <view class='h30'></view>
+  <view wx:if="{{orderData.length == 0 && noOrderData}}" class="marginTop40">
+    <view>
+      <image class="w280 h220 mgLeft235" src="/images/my/myorder_icon_no@3x.png"></image>
+    </view>
+    <view class="fs28 fc-999 tc mgTop20">暂时没有任何订单</view>
+  </view>
+
+</scroll-view>
+<!-- 订单帮助 -->
+<view class="drawer_screen" catchtouchmove='true' bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" catchtouchmove='true' class="drawer_box2" style='margin-top:-25%;' wx:if="{{showModalStatus}}">
+  <view class='mgLeft60 w630 bg-fff bRadius30' style="width:600rpx;height:920rpx;">
+
+    <!-- <modal hidden="{{!showModalStatus}}" catchtouchmove='true' bindconfirm="confirm" no-cancel="{{true}}"> -->
+      <scroll-view scroll-y style='height:920rpx;'>
+        <view class="padding30">
+          <view class="fs24 fc-28d7cc">订单编号：{{helpData.buyServiceNumber}}</view>
+          <view class="lh40 mgTop20 fs24 fc-666">有效期：</view>
+          <view class="lh40 fs24 fc-ffa541">{{helpData.useStartTime}}\t至\t{{helpData.useStopTime}}</view>
+          <view class='mgTop20 fs32 fc-28d7cc'>
+            <view class='fl lh40'>{{helpData.fitnessActivityName}}</view>
+            <view class='fr mgLeft15 lh40 fc-ff6857'>
+              <text class='fs24 fc-444'>实付：</text>{{helpData.payServiceMoney}}
+              <text class="fs26">¥</text>
+            </view>
+          </view>
+          <view class='clearB'></view>
+          <view class='fs24 fc-666 mgTop20'>会员已优惠
+            <text class="fr">{{helpData.vipDiscounts}}元</text>
+          </view>
+        </view>
+        <view class=" mgLeft30 h40 lh40 fc-444">
+          <image class='w20 h20' src="{{useImg2}}"></image>
+          <text class='fs20 mgLeft15'> 随时退</text>
+          <image class='w20 h20 mgLeft40' src="{{useImg2}}"></image>
+          <text class='fs20 mgLeft15'> 过期自动退</text>
+          <image class='w20 h20 mgLeft40' src="{{useImg2}}"></image>
+          <text class='fs20 mgLeft15'> 放心使用</text>
+        </view>
+        <view class='clearB'></view>
+        <view class='padding30'>
+          <view class='line-e8 '></view>
+          <view class="mgTop30 fs28 fc-444">
+            <image class="w30 h25  paddingR20" src="{{order}}"></image>
+            <text>{{helpData.fitnessName}}</text>
+          </view>
+          <view class="mgTop15 fs24 fc-999">
+            <image class="fl mgTop10 h30 " style='width:25rpx;height:30rpx;' src="{{address2}}"></image>
+            <text style='width:400rpx;margin-left:25rpx;' class='fl dlb lh35 mgTop10'>{{helpData.fitnessAddress}}</text>
+          </view>
+          <view class='clearB'></view>
+          <view class='line-e8 mgTop20'></view>
+          <view class="h40 lh40 mgTop20 fs26 fc-999">请尽快到店扫码使用</view>
+          <view class='fs24 fc-999 h60 lh60'>
+            <image class="w25 h25 paddingR20" src="{{waring}}"></image>
+            <text class="">会员最高享9折优惠</text>
+          </view>
+          <view class="fs28 fc-444 h40 lh40 mgTop30">活动使用说明</view>
+          <view class="clearB"></view>
+          <block wx:for="{{helpData.explain}}" wx:key="" wx:for-item="v">
+            <view class='w690 h60 lh60 fc-28d7cc fs24'>{{v.useExplainName}}</view>
+            <block wx:if="{{v.status>2}}" wx:for="{{v.textArr}}" wx:key="">
+              <view class='lh40'>
+                <image class="fl bRadius50 bg-9d mgTop15" style='width:10rpx;height:10rpx;'></image>
+                <view class='fl mgLeft15 500 fs24 fc-666 '>{{item}}</view>
+              </view>
+              <view class="clearB"></view>
+            </block>
+            <view wx:if="{{v.status==2 || v.status==1}}">
+              <image class="fl bRadius50 bg-9d mgTop15" style='width:10rpx;height:10rpx;'></image>
+              <view class='fl mgLeft15 500 fs24 fc-666 '>{{v.textArr[0]}}-{{v.textArr[1]}}</view>
+              <view class="clearB"></view>
+            </view>
+          </block>
+          <view class='540 h60 lh60 fc-28d7cc fs24'>温馨提示</view>
+          <view class='psnR'>
+            <image class="psnA bRadius50 bg-9d " style='width:10rpx;height:10rpx;left:0rpx;top:12rpx;'></image>
+            <view class='fl mgLeft25 500 fs24 fc-666 '>为了保障您的收益，建议您使用纯氧健身平台APP线上支付，其他支付方式导致纠纷，纯氧健身平台不承担任何责任，感谢您的理解和支持！</view>
+            <view class="clearB"></view>
+          </view>
+        </view>
+      </scroll-view>
+    <!-- </modal> -->
+  </view>
+</view>

@@ -1,0 +1,71 @@
+<view class='line-e8 wth100 psnF left0 top0'></view>
+<!-- 发布的帖子和视频切换 -->
+<block wx:for="{{select}}" wx:for-item="v" wx:key="index">
+  <view class="wth50 h100 lh100 tc fl fs28 {{v.checked == true?'line-28d7cc fc-28d7cc':'fc-666'}}" data-type="{{v.type}}" bindtap='select'>{{v.text}}</view>
+</block>
+<view class='clearB'></view>
+<view class=' line-e8'></view>
+<!-- 发布的帖子数据 -->
+<!-- <view wx:if="{{noteDataShow && noteData.length>0}}" wx:for="{{noteData}}" wx:for-item="v" wx:key="index">
+  <view class="padding30" data-fnum="{{v.forumNumber}}" data-fid="{{v.forumId}}" data-unum="{{v.userNumber}}" bindtap='toPostedPage'>
+    <view class="fs24 fc-999">{{v.createTime}}</view>
+    <view class="fs26 fc-666 mgTop20 lh40">{{v.context}}</view>
+    <view class="fr mgTop30 dlb fs20 fc-ccc">
+      <image class='w30 h30' src="{{commentImg}}"></image>
+      <text class="paddingR60 mgLeft20">{{v.commentCount}}</text>
+      <image class='w34 h30 ' src="{{collectImg}}"></image>
+      <text class="paddingR60 mgLeft20">{{v.views}}</text>
+      <image class='w30 h30' src="{{likeImg}}"></image>
+      <text class="mgLeft20">{{v.praise}}</text>
+    </view>
+  </view>
+  <view class='clearB'></view>
+</view> -->
+
+<!-- 帖子内容列表 -->
+<view class='mgTop10' wx:if="{{noteDataShow && noteData.length>0}}">
+  <view class=" fl" style='width:46%;'>
+    <block wx:for="{{noteData}}" wx:key="">
+      <template is="item" data="{{...item}}" wx:if="{{index%2==0}}"></template>
+    </block>
+  </view>
+  <view class=" fl mgLeft15" style='width:46%;'>
+    <block wx:for="{{noteData}}" wx:key="">
+      <template is="item" data="{{...item}}" wx:if="{{index%2==1}}"></template>
+    </block>
+    <view class="clearB"></view>
+    <view class="h40"></view>
+  </view>
+</view>
+
+<!-- 发布的视频数据 -->
+<view wx:if="{{videoDataShow && videoData.length>0}}" wx:for="{{videoData}}" wx:for-item="v" wx:key="index">
+  <view class="padding30">
+    <view class="fs24 fc-999">{{v.date}}</view>
+    <view class="psnR">
+      <image class="w690 mgTop20 h360 bg-ccc bRadius20"></image>
+      <image class="w100 h100 psnA top150 left295" src="{{playImg}}"></image>
+    </view>
+    <view class="fs28 fc-666 mgTop15">{{v.title}}</view>
+    <view class="fr mgTop30 dlb fs20 fc-ccc" style='line-height:10rpx;'>
+      <image class='w30 h30' src="{{commentImg}}"></image>
+      <text class="paddingR60 mgLeft20">{{v.comment}}</text>
+      <image class='w34 h30 ' src="{{collectImg}}"></image>
+      <text class="paddingR60 mgLeft20">{{v.collect}}</text>
+      <image class='w30 h30 ' src="{{likeImg}}"></image>
+      <text class="mgLeft20 lh40">{{v.like}}</text>
+    </view>
+  </view>
+  <view class='clearB'></view>
+</view>
+<view class="h40"></view>
+
+<view wx:if="{{noData}}" class="marginTop30">
+  <view class='tc'>
+    <image class="w280 h220 " src="{{noDataImg}}"></image>
+  </view>
+  <view class="fs28 fc-999 tc mgTop20">{{noDataText}}</view>
+</view>
+
+<!-- 引入帖子模板模板使用 -->
+<import src="/pages/template/posted.wxml" />

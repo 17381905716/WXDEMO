@@ -1,0 +1,18 @@
+page{
+  background: #f7f7f7;
+}
+.rightImg{
+  width:12rpx;
+  height:18rpx;
+}
+
+.drawer_box2 {
+  width: 710rpx;
+  overflow: hidden;
+  position: fixed;
+  top: 30%;
+  left: 0;
+  z-index: 20;
+  /* background: #fafafa; */
+  margin: 0px 20rpx 0 20rpx;
+}

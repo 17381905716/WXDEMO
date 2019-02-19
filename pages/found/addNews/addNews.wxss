@@ -1,0 +1,15 @@
+/* pages/found/addNews/addNews.wxss */
+button::after{
+  border: #fff;
+}
+.drawer_view {
+  width: 710rpx;
+  overflow: hidden;
+  position: fixed;
+  bottom: 20rpx;
+  left: 0rpx;
+  z-index: 20;
+  /* background: #fafafa; */
+  margin: 0px 20rpx 0 20rpx;
+}
+

@@ -1,0 +1,13 @@
+<i-toast id="toast" />
+<view class='line-e8 wth100 psnF left0 top0'></view>
+
+<!-- 全部评论 -->
+<view class="h60 lh60 fs32 fc-444 mgLeft30 mgTop40">全部评论
+  <text class='fs24 fc-666'>（{{count}}条）</text>
+</view>
+<block wx:for="{{commentList}}" wx:key="">
+  <template is="fitnessComment" data="{{...item,noHeadImg,starImg,noStarImg,array}}"></template>
+</block>
+
+<!-- 引入健身房评论模板 -->
+<import src="/pages/template/fitnessComment.wxml" />

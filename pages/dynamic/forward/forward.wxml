@@ -1,0 +1,40 @@
+<i-toast id="toast" />
+<view class='line-e8 wth100 psnF left0 top0'></view>
+
+<!-- 发布新动态 -->
+<view class='padding30 h60'>
+  <view class='fr w60 h60 lh60' bindtap='lookAgreement' data-status="open">
+    <image class='mgLeft30 w30 h36 ' src="{{orderImg}}"></image>
+  </view>
+</view>
+<form bindsubmit='saveDynamic'>
+  <view class="w690 h310 mgLeft30 psnR ">
+    <!-- <view class="h25"></view> -->
+    <textarea name="context" class="w650 h280 padding20 border-ccc fs30 lh40" maxlength='500' placeholder='此时此景，想和大家分享点什么？' bindinput='getCont'></textarea>
+    <view class="fr fs30 psnA right20  fc-999">{{num}}/500</view>
+  </view>
+  <view class='w690 mgLeft30 mgTop80 h240 bg-f8 bRadius20'>
+    <image class="fl mgTop30 mgLeft30 bRadius20" src="{{forumDetail.mediaList[0].url}}" style='width:218rpx;height:176rpx;'></image>
+    <view class='fl psnR mgLeft20 w420 lh40 fs24 fc-666'>
+      <image class='psnA w30 h30' src="{{shareImg}}" style='top:35rpx;right:30rpx;'></image>
+      <text class='fs32 h60 lh60 fc-444 db mgTop20'></text>
+      <text class="">{{forumDetail.showCont}}</text>
+    </view>
+  </view>
+  <view wx:if="{{showAddress}}" class=' h100 lh100 mgTop30 ' style='border-top:1rpx #e8e8e8 solid;border-bottom:1rpx #e8e8e8 solid;'>
+    <view class='fl ' bindtap='chooseAddress'>
+      <image class='fl mgTop35 mgLeft30 w25 h30' src="{{addressImg}}"></image>
+      <text class=' w540 omit dlb mgLeft10 fs32 fc-666'>{{address}}</text>
+    </view>
+    <view class="fr mgTop20 mgRight30 w60 h60 lh60 tc" bindtap='closeAddress'>
+      <image class='w30 h30' src='{{closeImg}}'></image>
+    </view>
+  </view>
+  <button class=" h80 w690 fs30 fc-fff bg-28d7cc mgLeft30 mgTop50 xy-center bRadius15" form-type="submit">发布</button>
+</form>
+
+<!-- 使用发帖协议提示模板 -->
+<template is="agreement" data="{{showAgreement}}"></template>
+
+<!-- 引入模板 -->
+<import src="/pages/template/agreement.wxml" />

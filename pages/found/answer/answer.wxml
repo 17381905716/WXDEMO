@@ -1,0 +1,44 @@
+<i-toast id="toast" />
+<view class='wth100 line-e8 psnF left0 top0'></view>
+<!-- 帖子 -->
+<view class='bg-fff'>
+  <view class='h30'></view>
+  <view class='w690 mgLeft30 h100 lh100'>
+    <image class='w72 h72 fl bRadius50 mgTop15' src="{{note.headImg?note.headImg:noHeadImg}}" data-num="{{note.userNumber}}" bindtap='lookOtherPage'></image>
+    <view class=" fl mgLeft30 dlb">
+      <view class="w500 h40 lh40 omit mgTop20 fs26 fc-666">{{note.nickName}}</view>
+      <view class="h40 lh40 fs16 fc-999">{{note.commentTime}}</view>
+    </view>
+  </view>
+  <!-- 内容部分 -->
+  <view class="w690 mgLeft30 mgTop10 ">
+    <view class="fl bg-000"></view>
+    <view class="fr w590">
+      <view class="lh40 fs fc-666 fs24">{{note.commentContext}}</view>
+    </view>
+  </view>
+  <view class="clearB"></view>
+  <view class='line-e8 mgTop30'></view>
+</view>
+<!-- 回复内容列表 -->
+<block wx:for="{{answerList}}" wx:for-item="v" wx:key="index">
+  <view class='w690 mgLeft30 mgTop30 h100 lh100'>
+    <image class='w72 h72 fl bRadius50 mgTop15' src="{{v.headImg?v.headImg:noHeadImg}}" data-num="{{v.userNumber}}" bindtap='lookOtherPage'></image>
+    <view class=" fl mgLeft30 dlb">
+      <view class="w500 h40 lh40 omit mgTop20 fs26 fc-666">{{v.nickName}}</view>
+      <view class="h40 lh40 fs16 fc-999">{{v.commentTime}}</view>
+    </view>
+  </view>
+  <!-- 回复内容部分 -->
+  <view class="w690 mgLeft30 mgTop10 ">
+    <view class="fl bg-000"></view>
+    <view class="fr w590">
+      <view class="lh40 fs fc-666 fs24">{{v.commentContext}}</view>
+    </view>
+  </view>
+  <view class="clearB"></view>
+  <view class='line-e8 mgTop30'></view>
+</block>
+<!-- 使用发布评论模板 -->
+<template is="comment" data="{{inputValue,autoFocus,disable}}"></template>
+<import src="/pages/template/comment.wxml" />

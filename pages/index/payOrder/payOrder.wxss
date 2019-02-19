@@ -1,0 +1,8 @@
+/* pages/index/payOrder/payOrder.wxss */
+page{
+  background: #f6f6f6;
+  height: 100%;
+}
+.test{
+  border-top: 1rpx #e8e8e8 solid;
+}

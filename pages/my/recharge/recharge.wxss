@@ -1,0 +1,24 @@
+/* pages/my/recharge/recharge.wxss */
+
+.writeView {
+  width: 0;
+  height: 0;
+  border: 60rpx solid red;
+  border-top-color: #fff;
+  border-bottom: none;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  transform: rotate(-135deg);
+  top:-12rpx;
+  right:-40rpx;
+}
+
+.drawer_box2 {
+  width: 710rpx;
+  overflow: hidden;
+  position: fixed;
+  top: 10%;
+  left: 0;
+  z-index: 20;
+  margin: 0px 20rpx 0 20rpx;
+}

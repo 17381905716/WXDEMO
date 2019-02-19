@@ -1,0 +1,39 @@
+<!-- 模板1--加精大图 -->
+<template name="item1">
+  <view class=' bg-fff mgTop40 bRadius20'>
+    <image class="w690 h380 bRadius20 " mode='aspectFill' src="{{success?faceImg:'/images/public/placeholderfigure_f@2x.png'}}" data-id="{{courseId}}" data-number="{{courseNumber}}" bindload='loadResult' bindtap='courseDetail'></image>
+    <view class="w630 mgTop15 mgLeft30">
+      <view class='fs30 fc-333'>{{courseTitle}}</view>
+      <view class="h60 ">
+        <image class='w30 h30 vMiddle' src="/images/public/course_icon_tv@3x.png"></image>
+        <text class=" mgLeft20 fs24 fc-ccc">{{coursePlay}}次</text>
+        <view class='fr'>
+          <!-- <image class='w34 h30 paddingR20' src="/images/public/found_icon_like@3x.png"></image>
+        <text class=" fs28 fc-666 paddingR60">{{coursePraise}}</text> -->
+          <image class='w34 h32 vMiddle' src="/images/public/course_icon_com@3x.png"></image>
+          <text class=" fs28 fc-666 paddingL15">{{commentCount}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='h20'></view>
+  </view>
+
+</template>
+
+<!-- 模板1--未加精小图 -->
+<template name="item2">
+  <view class='mgTop40 bg-fff h175 bRadius15'>
+    <image class='w260 h175 bRadius15 fl' mode="scaleToFill" src="{{success?faceImg:'/images/public/placeholderfigure_f@2x.png'}}" data-id="{{courseId}}" data-number="{{courseNumber}}" bindload='loadResult' bindtap='courseDetail'></image>
+    <view class='w380 fl mgLeft30 mgTop30'>
+      <view class='fs30 fc-333 w380 omit'>{{courseTitle}}</view>
+      <view class="h60 w380 mgTop15">
+        <image class='w30 h30 vMiddle' src="/images/public/course_icon_tv@3x.png"></image>
+        <text class=" mgLeft20 fs24 fc-ccc">{{coursePlay}}次</text>
+        <view class='fr mgRight30'>
+          <image class='w34 h32 vMiddle' src="/images/public/course_icon_com@3x.png"></image>
+          <text class=" fs28 fc-666 paddingL15">{{commentCount}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

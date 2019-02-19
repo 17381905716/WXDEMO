@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": true,
+    "usingComponents": {
+      "i-toast": "/dist/toast/index",
+      "i-load-more": "/dist/load-more/index"
+    }
+}

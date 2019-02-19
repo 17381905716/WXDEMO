@@ -1,0 +1,86 @@
+<!-- 只有文本轻提示 -->
+<i-toast id="toast" />
+<view class=' line-e8'></view>
+<view class="padding30">
+  <text class='fs32 fc-444'>余额：</text>
+  <text class='fs32 fc-28d7cc'>{{balance}}元</text>
+  <image class='fr w30 h36' src="{{orderImg}}" bindtap='lookAgreement'></image>
+</view>
+<view class=' mgTop10'>
+  <block wx:for="{{moneyData}}" wx:for-item="v" wx:key="index">
+    <view class="psnR fl vMiddle mgLeft30 mgTop30 w325 h130 border-28d7cc bRadius20 tc fs36  {{v.checked?'bg-28d7cc fc-fff':'bg-fff fc-333'}}" data-mid="{{v.chargeMoneyId}}" data-cid="{{v.giveCardId}}" data-gid="{{v.giveListId}}" bindtap='selectMoney'>
+      <text class=" db {{v.leaguerCard.leaguerCardName && v.giveList.giveDescription ? 'mgTop5': v.leaguerCard.leaguerCardName || v.giveList.giveDescription?'mgTop15': 'lh130' }}">充{{v.chargeMoney}}元</text>
+      <text class="fs20 h30 db mgTop5">{{v.giveList.giveDescription}}</text>
+      <text class="fs20 h30 mgTop5 {{v.leaguerCard != null ?'db':'dn'}}">领{{v.leaguerCard.leaguerCardName}}</text>
+      <view class="writeView psnA {{index ==0 && v.checked?'dlb':'dn'}}"></view>
+      <image class="w30 h36 psnA {{index ==0?'dlb':'dn'}}" style='right:10rpx;top:5rpx;' src="/images/public/hot@1.png"></image>
+    </view>
+  </block>
+  <view class='clearB'></view>
+</view>
+<view class='clearB'></view>
+<view class='w690 mgLeft30 tr mgTop30 fc-999 fs28'>
+  <text bindtap='lookRecord'>充值记录</text>
+</view>
+
+<view class="w540 mgLeft110 mgTop50 h100 lh100 tc fs32 bRadius-50 bg-28d7cc fc-fff" data-status="open" bindtap='openChange'>充值卡兑换</view>
+
+<view class="mgLeft30 fc-444 mgTop50">选择支付方式</view>
+<view class="padding30  ">
+  <image class='fl mgTop10 w40 h40' src="/images/my/rech_icon_wechat@3x.png"></image>
+  <text class='mgLeft20  fs26 fc-444'>微信支付</text>
+  <image class="fr mgTop15 w36 h36" data-checked="checked" src="{{checkedImg}}"></image>
+</view>
+
+<view class="h150 lh150 wth100 psnF bottom0 left0">
+  <view class='line-e8'></view>
+  <text class="fl fs28 fc-444 mgLeft30 paddingR20">共计</text>
+  <text class="fs24 fc-28d7cc">¥</text>
+  <text class="fs46 fc-28d7cc mgTop30">{{rechargeMoney}}</text>
+  <view class="fr bg-28d7cc mgRight30 mgTop35 bRadius40 w280 h80 lh80 fs32 fc-fff tc" bindtap='recharge'>立即充值</view>
+</view>
+<!-- 充值协议 -->
+<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="drawer_box2" wx:if="{{showModalStatus}}">
+  <view class='mgLeft60 w630  bg-fff bRadius30' style="width:600rpx;height:600rpx;margin-top:20%">
+    <view class='h30'></view>
+    <view class='h60 lh60 fs30 fc-666 tc'>充值协议</view>
+    <view class='mgLeft30 mgTop15 fs24 fc-999 lh45' style='width:540rpx;'>
+      <text>感谢您信任并使用纯氧健身！
+        我们依据最新法律要求，更新了充值协议，特地向您推送本提示。
+        我们一直尽力采取行业领先的安全防护措施来保护您的信息安全。我们会根据您使用服务的具体功能需要收集使用信息。
+      </text>
+    </view>
+    <view class="fs20 fc-999 tc mgTop40">点击按钮即表示同意
+      <text class='fc-28d7cc' bindtap='agreementPage'>《充值协议》</text>
+      <view class='w380 h80 lh80 mgLeft110 mgTop30 tc fs32 fc-fff bg-28d7cc bRadius40' bindtap='agreement'>同意本协议</view>
+    </view>
+  </view>
+</view>
+
+<!-- 充值卡兑换 -->
+<view class="drawer_screen" bindtap="openChange" data-statu="close" wx:if="{{showChange}}"></view>
+<view animation="{{animationData}}" class="drawer_box2" wx:if="{{showChange}}">
+  <view class='mgLeft60 w630 psnR bg-fff bRadius30' style="width:600rpx;height:600rpx;margin-top:20%">
+    <image class='w50 h50 psnA' src="{{closeImg}}" style='right:-20rpx;top:-20rpx;' data-statu="close" bindtap="openChange"></image>
+    <view class='h80'></view>
+    <form bindsubmit='enterChange'>
+      <view class='w540 h80 mgLeft30 fs28 fc-333'>
+        <text class='w120 h80 lh80 dlb fl tr'>编码</text>
+        <view class='w380 mgLeft30 fl border-eee'>
+          <input type='text' name="code" maxlength='12' class=' w340 h80 mgLeft30' placeholder='请输入编码'></input>
+        </view>
+      </view>
+      <view class='w540 h80 mgLeft30 fs28 fc-333 mgTop50'>
+        <text class='w120 h80 lh80 dlb fl tr'>兑换码</text>
+        <view class='w380 mgLeft30 fl border-eee'>
+          <input type='number' name="changecode" maxlength='6' class=' w340 h80 mgLeft30' placeholder='请输入兑换码'></input>
+        </view>
+      </view>
+      <view class='clearB'></view>
+      <view class="fs20 fc-999 tc mgTop50">
+        <button form-type="submit" class='w380 h80 lh80 mgLeft110 mgTop30 tc fs32 fc-fff bg-28d7cc bRadius40'>申请兑换</button>
+      </view>
+    </form>
+  </view>
+</view>

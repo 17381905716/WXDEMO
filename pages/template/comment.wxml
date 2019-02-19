@@ -1,0 +1,9 @@
+<template name="comment">
+  <view class="h120"></view>
+  <view class='btmView psnF left0 bottom0 wth100 line-e8'>
+    <image class='w32 h32 fl mgTop20 ' src="/images/found/found_icon_de_co@3x.png"></image>
+    <input type='text' class="fs24 fc-666 fl mgLeft20 mgTop15 " maxlength='200' value='{{inputValue}}' name="cont" cursor-spacing="8" focus='{{autoFocus}}' bindtap='tapEvent' bindinput="checkCont" bindblur='checkCont' disabled='{{disable}}' style='width:70vw'
+      placeholder='输入你的评论，一起交流吧~'></input>
+    <view style="width:100rpx;" class="mgRight50 h60 lh60 dlb fr tc bg-28d7cc mgTop5 fs28 fc-fff bRadius15" bindtap='submitComment'>提交</view>
+  </view>
+</template>

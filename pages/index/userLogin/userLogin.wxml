@@ -1,0 +1,38 @@
+<i-toast id="toast" />
+<!-- <button open-type="launchApp" app-parameter="wechat" binderror="launchAppError">打开APP</button> -->
+
+<view style='height:100%' bindtap="powerDrawer" data-statu="open">
+  <view class='h100'></view>
+  <view class='tc'>
+    <image class='w220 h220  ' src="/images/public/loading_logo.png"></image>
+  </view>
+  <view class='tc mgTop20'>
+    <image class='w420 h185 ' src="/images/public/loading_font.png"></image>
+  </view>
+</view>
+<!-- <view wx:if="{{showHead}}" class="tc">
+  <image class="w130 h130 mgTop150" src="/images/public/my_img_hrad@2x.png" bindtap="powerDrawer" data-statu="open"></image>
+  <text class="fs32 fc-444 db mgTop20">未登录</text>
+</view> -->
+
+<image style='position:fixed;left:255rpx;bottom:150rpx;width:240rpx;height:100rpx;' src="/images/public/first_img@3x.png"></image>
+
+<!-- 授权弹窗 -->
+<view class="drawer_screen" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="drawer_box2" wx:if="{{showModalStatus}}">
+  <view class='mgLeft60 mgTop20 w630 h360 bg-fff bRadius30 psnR' style="width:600rpx;">
+    <view class='h30'></view>
+    <view class='w60 h60 fr' bindtap="powerDrawer" data-statu="close">
+      <image class=" w30 h30 mgTop15 mgRight30 psnA" style='right:20rpx;top:30rpx;' src="/images/public/login_icon_cl@3x.png"></image>
+    </view>
+
+    <view class='h60 lh60 fs32 fc-999 tc '>登录方式</view>
+    <view class='line-e8 mgTop40'></view>
+    <view class="psnR ">
+      <image class='psnA' style='width:50rpx;height:42rpx;left:190rpx;top:26rpx;z-index:99' src="/images/public/login_icon_w@3x.png"></image>
+      <button class='mgTop70 h100 lh100 fs32 fc-fff bRadius30 bg-28d7cc' open-type="getUserInfo" style='width:80%;' lang="zh_CN" bindgetuserinfo="getUserInfo">
+        <text class="mgLeft70">微信登录</text>
+      </button>
+    </view>
+  </view>
+</view>

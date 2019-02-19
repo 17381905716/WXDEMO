@@ -1,0 +1,52 @@
+<!-- 只有文本轻提示 -->
+<i-toast id="toast" />
+
+<view class='fs32 mgLeft30 mgTop50 fc-444'>尊享会员套餐
+  <text wx:if="{{vipType}}" class='fs26 fc-f00'>（会员剩余{{vipSpareDay}}天）</text>
+</view>
+
+<block wx:for="{{cardData}}" wx:for-item="v" wx:key="index">
+  <view class="fl w325 h200 mgLeft30 mgTop30 psnR">
+    <view class=" w325 lh130 bRadius20 tc {{v.checked == true?'h132 bg-28d7cc fc-fff':'h128 bg-fff fc-28d7cc border-28d7cc'}}" data-id="{{v.leaguerCardId}}" data-money="{{v.leaguerCardMoney}}" bindtap='selectMoney'>
+      {{v.leaguerCardName}}</view>
+    <view class="mgTop20 h30 fs30 fc-28d7cc tc">{{v.leaguerCardMoney}}元
+      \t<text class="lineThrough fs32 fc-444 {{v.originalPrice?'dlb':'dn'}}">{{v.originalPrice}}元</text>
+    </view>
+    <!-- 第一张显示带火小图片 -->
+    <view class="writeView psnA {{index ==0 && v.checked?'dlb':'dn'}}"></view>
+    <image class="w30 h36 psnA {{index ==0?'dlb':'dn'}}" style='right:10rpx;top:5rpx;' src="/images/public/hot@1.png"></image>
+  </view>
+</block>
+<view class="clearB"></view>
+<view class='padding30'>
+  <view class='fs24 fc-999 h60 lh60'>
+    <image class="w25 h25" src="{{waring}}"></image>
+    <text class="mgLeft15 fs28 fc-444">尊享会员说明</text>
+  </view>
+  <view class='fs24 fc-999 lh60 mgLeft40'>尊享会员为纯氧健身平台会员、非某个健身房会员卡</view>
+  <view class='fs28 fc-444 lh60 mgLeft40'>尊享会员特权</view>
+  <view class='fs24 fc-999 lh60 mgLeft40'>平台所有合作健身房，每次健身均可享受9折优惠</view>
+  <view class=' mgTop30  tr fc-999 fs28'>
+    <text bindtap='lookRecord'>购买记录</text>
+  </view>
+  <view class=" fs32 fc-444">选择支付方式</view>
+  <block wx:for="{{payType}}" wx:for-item="v" wx:key="index">
+    <view class="mgTop40 " data-index="{{index}}" data-method="{{v.payMethod}}" bindtap='checkPayType'>
+      <image class='fl mgTop10 w40 h40' src="{{v.img}}"></image>
+      <text class='mgLeft20  fs26 fc-444'>{{v.text}}</text>
+      <image class="fr mgTop15 w36 h36" src="{{v.checked?checked:noChecked}}"></image>
+    </view>
+    <view class='w690 mgTop50 line-e8 '></view>
+    <view class="clearB"></view>
+  </block>
+</view>
+
+<view class="h150 lh150 wth100 mgTop30 psnF left0 bottom0">
+  <view class='line-e8'></view>
+  <text class=" fl fs28 fc-444 mgLeft30 paddingR20">共计</text>
+  <text class="fs24 fc-28d7cc">¥</text>
+  <text class="fs46 fc-28d7cc mgTop30">{{money}}</text>\t
+  <text class="{{originalPrice?'dlb':'dn'}} lineThrough fs32 fc-444">{{originalPrice}}元</text>
+  <view class="fr bg-28d7cc mgRight30 mgTop35 bRadius40 w280 h80 lh80 fs32 fc-fff tc" bindtap='buyVipCard'>立即购买</view>
+  <view class='' style='height:10rpx;'></view>
+</view>

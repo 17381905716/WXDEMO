@@ -1,0 +1,40 @@
+<i-toast id="toast" />
+<view class="h360 psnR" style="background-size:cover;background-image:url({{bgImg}})">
+  <image class='w130 h130 bRadius50' style="margin-top:290rpx;margin-left:310rpx;" data-imgtype="head" bindtap='updateImg' src="{{userInfo.headImg}}"></image>
+  <!-- 修改背景图片图标 -->
+  <!-- <image class="fr w40 h30 mgRight30 " data-imgtype="background" bindtap='updateImg' style="margin-top:300rpx;" src="{{cemeraImg}}"></image> -->
+
+  <image wx:if="{{userInfo.vipType}}" class='psnA' src="{{memberImg}}" style='width:60rpx;height:54rpx;top:265rpx;right:305rpx;'></image>
+</view>
+<view class="fs24 fc-666 tc mgTop80">更换头像</view>
+<view class="w690 mgLeft30 h50 line-e8 "></view>
+<block wx:for="{{userData}}" wx:for-item="v" wx:key="index">
+  <!-- <view class="w690 mgLeft30 h30 line-e8 {{v.type =='phone'?'db':'dn'}}"></view> -->
+  <view class="fs28 fc-444 w690 mgLeft30 mgTop50 " data-type="{{v.type}}" bindtap='updateUser'>
+    <text class="">{{v.text}}</text>
+    <view class='fr'>
+      <image class=" mgLeft30 fr {{v.type=='nickname'?'w30 h25 bg-dcf8ff':'w20 h32'}}" style='margin-top:5rpx;' src="{{v.type=='nickname'?editNick:rightImg}}"></image>
+      <text wx:if="{{v.type != 'birthday' &&  v.type != ''}}" class="fr fc-999 {{v.type=='introduct'?'dn':'dlb'}}">{{v.value?v.value:''}}</text>  
+      <picker class='fr' wx:if="{{v.type == 'birthday'}}" mode="date" value="{{date}}" start="1940-01-01" end="{{endDate}}" bindchange="changeDate">
+        <text class="picker ">{{date}}</text>
+      </picker>
+    </view>
+  </view>
+</block>
+<!-- 修改性别 -->
+<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="drawer_box bRadius20" wx:if="{{showModalStatus}}">
+  <view class='w710 h200 fs32 fc-444'>
+    <view class=' h100 lh100 line-ccc bg-fff' data-sex="1" bindtap='chooseSex'>
+      <image class='w32 h32 mgLeft260 padding20 fl mgTop15' src="/images/my/gender_icon_man@3x.png"></image>
+      <text>男</text>
+    </view>
+    <view class=' h100 lh100 bg-fff' data-sex="2" bindtap='chooseSex' style='  border-bottom-left-radius: 20rpx;border-bottom-right-radius: 20rpx;'>
+      <image class="w32 h32 mgLeft260 padding20 fl mgTop15" src="/images/my/gender_icon_woman@3x.png"></image>
+      <text>女</text>
+    </view>
+  </view>
+
+  <view style='height:15rpx;opacity: 0.1;background:#000;'></view>
+  <button class='fs32 fc-444 tc h100 lh100 bRadius15' bindtap="powerDrawer" data-statu="close">取消</button>
+</view>

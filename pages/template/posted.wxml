@@ -1,0 +1,20 @@
+<!--  下面是一个模块 -->
+<template name="item">
+  <view class="fl mgLeft30 dlb mgTop30 bRadius20 bg-fff " style="height:{{mediaList[0].status ==1?470:520}}rpx">
+    <view class="psnR" data-unum="{{userNumber}}" data-num="{{forumNumber}}"  bindtap='toDetailPage'>
+      <image class="leftImg {{mediaList[0].status ==1?'h330':'h380'}}" data-num="{{forumNumber}}" bindload='loadSuccess' mode="aspectFill" src="{{success?faceImg:'/images/public/placeholderfigure_t@2x.png'}}" ></image>
+      <image class="w80 h80 psnA {{mediaList[0].status ==2?'dlb':'dn'}}" style='left:125rpx;top:150rpx' src="/images/public/found_icon_de_pl@3x.png"></image>
+    </view>
+    <view class="h40 w300 fs26 mgTop5 mgLeft15">{{context}}</view>
+    <view class='mgTop10 fs20 lh40 mgLeft15 '>
+      <image class="w40 h40 fl mgleft30 bRadius20 " src="{{headImg}}"></image>
+      <text class=' fl mgLeft15 dlb' style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis'>{{nickName}}</text>
+      <view class="fr bg-fff" style='z-index:99'>
+        <image class='w20 h20' src='/images/public/found_icon_com@3x.png'></image>
+        <text class='fs20 paddingL15 paddingR15'>{{views}}</text>
+        <image class='w20 h20' src='/images/public/found_icon_like@3x.png'></image>
+        <text class='fs20 paddingL15 paddingR15'>{{praise}}</text>
+      </view>
+    </view>
+  </view>
+</template>

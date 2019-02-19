@@ -1,0 +1,68 @@
+<i-toast id="toast" />
+<view class='line-e8 wth100 psnF left0 top0'></view>
+
+<!-- 发布新动态 -->
+<view class='padding30 h60'>
+  <!-- 用户头像 -->
+  <!-- <image class='fl w54 h54 bRadius50 mgTop5' src="{{headImg}}"></image> -->
+  <view class='fr w60 h60 lh60' bindtap='lookAgreement' data-status="open">
+    <image class='mgLeft30 w30 h36 ' src="{{orderImg}}"></image>
+  </view>
+</view>
+<view class='line-e8 wth100'></view>
+<form bindsubmit='saveNews'>
+  <view class="w690 h400 mgLeft30 psnR ">
+    <!-- <view class="h25"></view> -->
+    <textarea name="context" class="w650 h330 padding20 fs30 lh40" maxlength='500' placeholder='此时此景，想和大家分享点什么？' bindinput='getCont'></textarea>
+    <view class="fr fs30 psnA right20 bottom0 fc-999">{{num}}/500</view>
+  </view>
+<view class='line-e8 wth100 mgTop20'></view>
+  <!-- 上传的图片预览 -->
+  <view class="wth100 h200 mgTop20">
+    <block wx:for="{{imgList}}" wx:key="index">
+      <view class='fl mgLeft30 mgTop30 dlb psnR'>
+        <image class="" style="width:150rpx;height:150rpx;" bindtap='previewImage' src="{{item}}"></image>
+        <image class="w30 h30 psnA" data-imgsrc="{{item}}" bindtap='deleteImg' style='top:-10rpx;right:-10rpx;' src="/images/public/deleteButton@3x.png"></image>
+      </view>
+    </block>
+    <view wx:if="{{imgList.length<6}}" class='fl w188 h188 mgLeft30 mgTop30 bg-f8 bRadius15' style='margin-bottom:30rpx;' bindtap="powerDrawer" data-statu="open">
+      <image class="w48 h48 paddingL70 paddingT70" src="/images/public/found_icon_pl_add@3x.png"></image>
+    </view>
+  </view>
+  <!-- 视频封面 -->
+  <view class='h450 w690 mgLeft30 mgTop30 bRadius30 tc' wx:if="{{videoImgSrc}}" style="background-size: cover;background-image:url({{videoImgSrc}}) ;">
+    <image class="w100 h100 mgTop175 " src="{{playBtn}}"></image>
+  </view>
+  <view class='clearB'></view>
+  <view class=' h100 lh100 mgTop30 ' style='border-top:1rpx #e8e8e8 solid;border-bottom:1rpx #e8e8e8 solid;'>
+    <view class='fl h100' bindtap='chooseAddress'>
+      <image class='fl mgTop35 mgLeft30 w25 h30' src="{{addressImg}}"></image>
+      <text class=' w540 omit dlb mgLeft10 fs32 fc-666'>{{address}}</text>
+    </view>
+    <view wx:if="{{showAddress}}" class="fr mgTop20 mgRight30 w60 h60 lh60 tc" bindtap='closeAddress'>
+      <image class='w30 h30' src='{{closeImg}}'></image>
+    </view>
+  </view>
+  <button class=" h80 w690 fs30 fc-fff bg-28d7cc mgLeft30 mgTop50 xy-center bRadius15" form-type="submit">发布</button>
+</form>
+<view class='h30'></view>
+<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="drawer_view bRadius20 " wx:if="{{showModalStatus}}">
+  <view class='w710 h200 bRadius20' style='z-index:666'>
+    <view class=' h100 lh100 line-ccc bg-fff' bindtap='chooseImage'>
+      <image class='w46 h36 mgLeft260 padding20 fl mgTop15' src="/images/public/found_icon_hot_img@3x.png"></image>
+      <text>图片</text>
+    </view>
+    <view class=' h100 lh100 bg-fff ' bindtap='chooseVideo' style='border-bottom-left-radius: 20rpx;border-bottom-right-radius: 20rpx;'>
+      <image class="w46 h36 mgLeft260 padding20 fl mgTop15" src="/images/public/found_icon_hot_vi@3x.png"></image>
+      <text>视频</text>
+    </view>
+  </view>
+
+  <view style='height:15rpx;opacity: 0.1;background:#000;'></view>
+  <button class='fs32 fc-444 tc h100 lh100 bRadius15' bindtap="powerDrawer" data-statu="close">取消</button>
+</view>
+<!-- 使用发帖协议提示模板 -->
+<template is="agreement" data="{{showAgreement}}"></template>
+<!-- 引入模板 -->
+<import src="/pages/template/agreement.wxml" />

@@ -1,0 +1,105 @@
+<i-toast id="toast" />
+<view class=" fc-fff h450 psnR" style='background-size: cover;background-image:url({{bgImg}}) ;'>
+  <image wx:if="{{otherInfo.vipType}}" class='psnA' src="{{memberImg}}" style='width:60rpx;height:54rpx;top:125rpx;right:305rpx;'></image>
+  <image class='w120 h120 bRadius50 mgLeft315 mgTop150 border3-ccc ' bindtap='lookUserPhoto' src="{{otherInfo.headImg?otherInfo.headImg:noHeadImg}}"></image>
+  <view class="w690 mgLeft30 omit h40 lh40 fs32 tc ">{{otherInfo.nickName}}</view>
+  <view class='clearB'></view>
+  <view class='tc h70'>
+    <view class="w80 h30 lh30 dlb fs16 fc-fff tc {{otherInfo.sex==2?'bg-ff79b8':'bg-76e1ff'}}" style='border-radius:15rpx;'>
+      <image wx:if="{{otherInfo.sex==2}}" class='vMiddle' style='width:12rpx;height:18rpx;' src="{{womanImg}}"></image>
+      <image wx:if="{{otherInfo.sex<2}}" class='vMiddle' style='width:15rpx;height:15rpx;' src="{{manImg}}"></image>
+      <text class='mgLeft10'>{{otherInfo.age}}</text>
+      <!-- <image class='fl mgLeft20 ' style='width:15rpx;height:15rpx;margin-top:8rpx;' src="{{otherInfo.sex==2?womanImg:manImg}}"></image> -->
+      <!-- <text class='mgLeft10 mgTop5 fl'>{{otherInfo.age}}</text> -->
+    </view>
+  </view>
+  <view class="h40 lh40 fs24 tc">
+    <image class="w30 h30" src="{{otherInfo.vipType==1?vipImg2:vipImg1}}"></image>
+    <text>\t\t{{otherInfo.vipType==1?'尊享会员':'非尊享会员'}}</text>
+  </view>
+</view>
+
+<!-- 发布人信息 -->
+<view class='w690 mgLeft30 mgTop30 h100 lh100'>
+  <view class="fl fs32  fc-444 h100 lh100 ">个人资料</view>
+  <view wx:if="{{!(userNumber==otherInfo.userNumber)}}" class="fr mgTop20 w162 h60 lh60 dlb tc border-28d7cc bRadius30 fs28 fc-28d7cc" data-about="{{isFollow}}" bindtap='about'>{{isFollow==1?'已关注':'关注'}}</view>
+</view>
+<view class="h60 lh60 mgLeft30 fs28 fc-999">手机号：{{otherInfo.phoneNumber?otherInfo.phoneNumber:'-- --'}}</view>
+<view class="h60 lh60 mgLeft30 fs28 fc-999">生日：{{otherInfo.birthday}}</view>
+<view class='w690 mgLeft30 mgTop30 line-e8'></view>
+<view class="mgLeft30 fs32 mgTop30  fc-444 h60 lh60 ">个人介绍</view>
+<view class="padding30 fs26 fc-999 lh40 newLine">{{otherInfo.introduction?otherInfo.introduction:'该用户尚未填写个人介绍~'}}</view>
+
+<view class='w690 mgLeft30 mgTop30 line-e8'></view>
+<view class="h80 mgTop30 mgLeft30">
+  <block wx:for="{{select}}" wx:for-item="v" wx:key="index">
+    <view class=" h100 lh100 tc fl fs28 {{v.checked?'fc-28d7cc':'fc-666'}} {{index>0?'mgLeft40':''}}" data-type="{{v.type}}" bindtap='select'>{{v.text}}（{{v.num}}）</view>
+  </block>
+</view>
+
+<!-- 发帖内容列表 -->
+<view class='mgTop20' wx:if="{{noteData.length > 0 && noteShow}}">
+  <view class=" fl" style='width:45%;height:100%'>
+    <block wx:for="{{noteData}}" wx:key="">
+      <template is="item" data="{{...item}}" wx:if="{{index%2==0}}"></template>
+    </block>
+  </view>
+  <view class=" fl mgLeft30" style='width:45%;height:100%'>
+    <block wx:for="{{noteData}}" wx:key="">
+      <template is="item" data="{{...item}}" wx:if="{{index%2==1}}"></template>
+    </block>
+    <view class="clearB"></view>
+    <view class="h40"></view>
+  </view>
+</view>
+
+<!-- 发布视频列表 -->
+<view class="w690 mgLeft30">
+  <block wx:if="{{videoData.length>0 && videoShow}}" wx:for="{{videoData}}" wx:key="index">
+    <template is="{{item.courseSperm == 1?'item1':'item2'}}" data="{{...item}}"></template>
+    <view class="clearB"></view>
+  </block>
+</view>
+<view class="h40"></view>
+
+<!-- 粉丝 -->
+<view wx:if="{{fansData.length>0 && fansShow}}">
+  <view class='clearB'></view>
+  <block wx:for="{{fansData}}" wx:for-item="v" wx:key="index">
+    <view class="fl wth25 h200 tc mgTop30">
+      <image class="w100 h100 bRadius50" src="{{v.headImg}}" data-num="{{v.userNumber}}" bindtap='lookOtherFans'></image>
+      <view class="w150 mgLeft20 omit fs26 fc-999 mgTop15">{{v.nickName}}</view>
+    </view>
+  </block>
+</view>
+
+<!-- 没有发布帖子-->
+<view wx:if="{{noteData.length == 0 && noteShow}}" class="mgTop10 tc ">
+  <image class="w280 h220 dlb" src="/images/public/mypost_icon_com_no@3x.png"></image>
+  <text class="db fs28 fc-999 mgTop20">暂无发布帖子</text>
+  <view class='h30'></view>
+</view>
+
+<!-- 视频内容列表 ，没有视频-->
+<view wx:if="{{videoData.length == 0 &&  videoShow}}" class="mgTop20">
+  <view>
+    <image class="w280 h220 mgLeft235" src="/images/public/vidio_icon_no@3x.png"></image>
+  </view>
+  <view class="fs28 fc-999 tc mgTop20">暂无发布课程</view>
+  <view class='h30'></view>
+</view>
+
+<!-- 没有关注粉丝-->
+<view wx:if="{{fansData.length==0 && fansShow}}" class="mgTop10">
+  <view>
+    <image class="w280 h220 mgLeft235" src="/images/public/myfollow_icon_no@3x.png"></image>
+  </view>
+  <view class="fs28 fc-999 tc mgTop20">暂无关注粉丝</view>
+  <view class='h30'></view>
+</view>
+
+<!-- 引入帖子模板模板使用 -->
+<import src="/pages/template/posted.wxml" />
+
+<!-- 引入视频模板使用 -->
+<import src="/pages/template/course.wxml" />

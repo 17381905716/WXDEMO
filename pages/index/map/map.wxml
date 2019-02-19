@@ -1,0 +1,39 @@
+<view class="w690 h80  mgLeft30 ">
+  <view class="dlb lh80" bindtap='cityPage'>
+    <text class="  fs28 fc-333 padding20 "> {{cityName}}</text>
+    <image class=" rightImg" style='width:16rpx;height:8rpx;' src="/images/index/home_icon_city@3x.png"></image>
+  </view>
+  <!-- 搜索框 -->
+  <view class="weui-search-bar__form w500 fr mgTop15 ">
+    <view class="weui-search-bar__box bg-eee ">
+      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+      <input type="text" class="weui-search-bar__input " value='{{location.address}}' placeholder='输入地址' bindtap='chooseLocation' bindinput='putKeyword' />
+    </view>
+  </view>
+</view>
+<view class='h30'></view>
+<!-- 地图部分 -->
+<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="12" controls="{{controls}}" markers="{{markers}}" bindtap='clickEvent' bindcontroltap="controltap" bindmarkertap="markertap" bindcallouttap="toDetailPage" polyline="{{polyline}}" bindregionchange="regionchange"
+  show-location style="width: 100%; height:92%;">
+  <cover-view wx:if="{{detailShow}}" class='w690 h240 mgLeft30 bRadius30 bg-fff' style='left:10rpx;top:30%;z-index:100;position:fixed'>
+    <cover-view class='wth100 fc-666 fs28 dlb  mgLeft30 mgTop10'>
+      <cover-image class='fl mgTop10 w30 h30 ' src="/images/index/home_icon_map_s@3x.png"></cover-image>
+      <cover-view class='w500 omit fl mgLeft15 mgTop10'>{{detail.fitnessName}}</cover-view>
+      <cover-image class='fr mgRight50 mgTop10' style='width:72rpx;height:32rpx;' src="{{detail.statusImg}}"></cover-image>
+    </cover-view>
+    <cover-view class='fc-999 fs24  mgLeft30'>
+      <cover-image style='width:25rpx;height:25rpx;' class='fl mgTop15 ' src="/images/index/home_icon_map_cl@3x.png"></cover-image>
+      <cover-view class='fl dlb w500 omit mgLeft20 mgTop10'>营业时间：<cover-view class=' dlb fc-28d7cc'>{{detail.startBusiness}}-{{detail.stopBusiness}}</cover-view></cover-view>
+    </cover-view>
+    <cover-view class='fc-999 fs24 h60 lh60  mgLeft30'>
+      <cover-image style='width:20rpx;height:26rpx;' class='fl mgTop15 ' src="/images/index/home_icon_map_ad@3x.png"></cover-image>
+      <cover-view class='dlb w400 omit mgTop10' style='margin-left:25rpx;'>{{detail.fitnessAddress}}</cover-view>
+      <cover-view class="fr mgRight30 w162 h60 lh60 dlb tc bRadius30 fs28 bg-28d7cc fc-fff"  bindtap='toDetailPage'>查看详情</cover-view>
+    </cover-view>
+    <cover-view class='fc-999 fs24  mgLeft30'>
+      <cover-image style='width:25rpx;height:25rpx;' class='fl mgTop10 ' src="/images/index/home_icon_map_r@3x.png"></cover-image>
+      <cover-view class='dlb mgLeft20 mgTop10'>距离：{{detail.distance}}千米</cover-view>
+    </cover-view>
+    
+  </cover-view>
+</map>

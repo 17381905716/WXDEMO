@@ -1,0 +1,42 @@
+<!-- <i-toast id="toast" /> -->
+<view class='line-e8 wth100 psnF left0 top0'></view>
+
+<view class='psnR w690 h380 '>
+  <view class='w690 h380 mgLeft30 mgTop30 bRadius20' style='background-size: cover;background-image:url({{myMember}})'>
+    <view class='fs32 lh130 fontB mgLeft30 mgTop30 fc-fff'>纯氧共享健身·尊享会员
+      <view class='w80 h80 lh80 fr mgTop20 ' bindtap='powerDrawer' data-statu="open">
+        <image class='w36 h36 mgTop20 mgLeft15' src="{{helpImg}}"></image>
+      </view>
+    </view>
+    <view wx:if="{{userInfo.vipType == 0}}" class='mgLeft30 mgTop40 fs30 fc-fff'>尊享会员9折优惠</view>
+    <view wx:if="{{userInfo.vipType == 1}}" class='mgLeft30 mgTop40 fs30 fc-fff'>9折优惠剩余天数
+      <text class='fs46 fc-ffd37d '>{{userInfo.vipSpareDay}}</text>天
+    </view>
+  </view>
+  <view class='psnA bottom30 right0 w210 h60 lh60 tc bRadius30 fs24 fc-28d7cc bg-fff3bb' bindtap='buyCardPage'>{{userInfo.vipType?'立即续费':'立即购买'}}</view>
+</view>
+
+<navigator class="wth100 h100 lh100 psnF left0 bottom0 tc fs32 fc-fff bg-28d7cc" url='/pages/my/historyRecord/historyRecord?pageType=buyCard'>购买记录</navigator>
+
+<!-- 充值协议 -->
+<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="drawer_box2" wx:if="{{showModalStatus}}">
+  <view class='mgLeft60 w630  bg-fff bRadius30' style="width:600rpx;height:800rpx;">
+    <view class='h30'></view>
+    <view class='h60 lh60 fs30 fc-666 tc'>会员卡购买及使用规则</view>
+    <scroll-view scroll-y class='mgLeft30 mgTop15 fs24 fc-999 lh45' style='width:540rpx;height:500rpx;'>
+      <text>1.纯氧会员卡生效后会员卡有效期内用户可以享受健身房消费\t<text class='fs32 fc-f00'>9折</text>\t优惠。
+      用户须知 
+      1.用户购买/领取到的会员卡，将自动存入我的-会员页，且购买/领取后的会员卡不能退还购买/换取对等费用；
+      2.购买会员卡的用户只能在纯氧共享健身app及纯氧的微信小程序中参与健身促销优惠活动；
+      3.不允许同一用户下不同账号之间发起邀请，若存在使用同一纯氧账号、同一身份证、同一微信账号、或者同一设备的、符合任意一项目、均视为同一用户；
+      4.对于以任何不正当方式参与活动的用户，包括但不限于恶意注册、恶意套现、利用程序漏洞等、纯氧有权取消该用户的参与资格、收回已发放的会员卡并且追回已经发放的现金奖励；
+      5.购买会员卡如需开具发票，需要待健身会员卡活动期(会员卡生效后有效期)结束后，根据实际结算金额（抵减后期健身消费奖励红包金额）据实开票。
+      6.健身奖励红包金额部分以及其他活动返现金额部分若后期用于健身消费，该部分奖励金额不能开具发票；
+      </text>
+    </scroll-view>
+    <view class="fs20 fc-999 tc mgTop50">
+      <view class='w380 h80 lh80 mgLeft110 mgTop30 tc fs32 fc-fff bg-28d7cc bRadius40' bindtap='powerDrawer' data-statu="close">知道了~</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,27 @@
+<i-toast id="toast" />
+<!-- 绑定手机号 -->
+<form bindsubmit='updatePhone'>
+  <view class='mgTop30'>
+    <image class='fl mgLeft50' style="width:48rpx;height:56rpx" src="/images/my/wechat_iocn.png"></image>
+    <text class='fs32 fc-444 mgLeft20'>为了您的账户安全请绑定手机号</text>
+  </view>
+  <view class='mgLeft50 mgTop100'>
+    <view class='mgTop30'>
+      <image class='fl mgTop10 ' style="width:36rpx;height:46rpx" src="/images/my/phone.png"></image>
+      <input class='w300 mgLeft30 mgTop10 fl fs32 fc-999' name="phone" type='number' value='{{phone}}' bindinput='getPhoneVal' placeholder='请输入手机号'></input>
+      <button class='w190 fr mgRight60 fs24  h70 lh70 bg-ccc bRadius35 tc fc-fff' disabled="{{forbidden}}" bindtap='getCode'>{{codename}}</button>
+    </view>
+    <view class='clearB'></view>
+    <view class="w630 h50 line-e8"></view>
+    <view class='mgTop30'>
+      <image class='fl mgTop10 ' style="width:36rpx;height:46rpx" src="/images/my/code.png"></image>
+      <input class='w300 mgLeft30 mgTop10 fl fs32 fc-999' name="code" type='number' value='{{code}}' bindinput='getCodeVal' placeholder='请输入验证码'></input>
+    </view>
+    <view class='clearB'></view>
+    <view class="w630 h50 line-e8"></view>
+
+  </view>
+  <view class='clearB'></view>
+
+  <button style='border-radius:50rpx;margin-left:160rpx;' form-type='submit' class='w420 bRadius35 mgLeft120 mgTop150 fs36 h100 lh100 tc fc-fff bg-28d7cc' disabled='{{disabled}}'>立即绑定</button>
+</form>

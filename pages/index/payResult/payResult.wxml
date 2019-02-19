@@ -1,0 +1,10 @@
+<view class='line-e8 wth100 psnF left0 top0'></view>
+<view class="mgTop100" > 
+  <view>
+    <image class="w280 h220 mgLeft235" src="{{resultImg}}"></image>
+  </view>
+  <view class="fs28 fc-999 tc mgTop30">{{msgText}}</view>
+</view>
+<view class="tc mgTop100">
+  <view class="dlb w420 h100 lh100 bg-28d7cc fs32 fc-fff" style='border-radius:50rpx;' data-status="{{status}}" bindtap='payResultPage'>{{btnText}}</view>
+</view>

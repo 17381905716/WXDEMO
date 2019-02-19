@@ -1,0 +1,8 @@
+/* pages/dynamic/dynamic.wxss */
+
+.img-2{
+  
+}
+.img_3{
+  width:214rpx;height:176rpx;
+}

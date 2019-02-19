@@ -1,0 +1,77 @@
+<i-toast id="toast" />
+<view class=" fc-fff h450 psnR " style='background-size: cover;background-image:url({{bgImg}})'>
+  <image class='db w40 h40 fr mgRight30 mgTop30' src="{{setImg}}" bindtap='updateUser'></image>
+
+  <image wx:if="{{userInfo.vipType ==1}}" class='psnA' src="{{memberImg}}" style='width:60rpx;height:54rpx;top:105rpx;right:305rpx;'></image>
+  <image class='w120 h120 bRadius50 mgLeft315 mgTop130 ' bindtap='lookUserPhoto' src="{{userInfo.headImg}}"></image>
+  <!-- 用户会员的三种状态 -->
+  <view class="tc fs20 " style='color:#ffd700'>
+    <view class="{{userInfo.vipType ==0 && userInfo.vipSpareDay ==0?'dlb':'dn'}} w188 h40 lh40 tc fc-fff  border-fff bRadius25 mgTop10 ">
+      <image class='fl mgLeft15 mgTop5 w32 h25' src="{{vipImg1}}"></image>
+      <text class='' bindtap='memberPage'>开通尊享会员</text>
+    </view>
+    <view class="{{userInfo.vipType ==1 && userInfo.vipSpareDay > 5?'dlb':'dn' }} w188 h40 lh40 fs20 fc-fff bRadius25 mgTop10" bindtap='memberPage' style='background:#3b3b3b'>
+      <image class='w32 h25 fl ' style='margin-top:8rpx;margin-left:25rpx;' src="{{crownImg}}"></image>
+      <text class='fl mgLeft20'>尊享会员</text>
+    </view>
+    <view class="{{userInfo.vipType ==1 && userInfo.vipSpareDay < 6?'dlb':'dn' }} w188 h40  fs20 fc-fff bRadius25 mgTop10" bindtap='memberPage' style='background:#3b3b3b'>
+      <image class='w32 h25 fl mgLeft15' style='margin-top:8rpx;' src="{{crownImg}}"></image>
+      <text class='fl mgLeft15'>会员剩余<text class='fs24 fc-fff3bb'>{{userInfo.vipSpareDay}}</text>天</text>
+    </view>
+  </view>
+  <view wx:if="{{userInfo.phoneNumber && userInfo.phoneNumber.length==11}}" class="w690 mgLeft30 h80 lh80 fs32 ">
+    <text class='dlb wth45 tr fl mgLeft15 omit'>{{userInfo.nickName}}</text>
+    <text class='dlb wth40 fl mgLeft20'>{{userInfo.phoneNumber?userInfo.phoneNumber:''}}</text>
+  </view>
+  <view wx:if="{{!userInfo.phoneNumber}}" class="w690 mgLeft30 h80 lh80 fs32 omit tc">{{userInfo.nickName}}</view>
+</view>
+<view class="fs32 mgTop30 mgLeft30">我的钱包</view>
+
+<view class='w690 h190 mgLeft30 mgTop30 fc-fff bRadius15 ' style='background-size: cover;background-image:url({{myWalletImg}})'>
+  <view class="wth50  fl mgTop100" style='margin-top:60rpx'>
+    <view class="fs28 fc-fff fr mgRight30">余额
+      <text class="fs36" decode='true' space='true'>&nbsp;{{userInfo.balance}}&nbsp;</text>元
+    </view>
+  </view>
+  <view class="wth50  fl mgTop100" style='margin-top:60rpx'>
+    <text class="fl mgTop10">|</text>
+    <view class="fs28 fc-fff fl mgLeft30">鼓励金
+      <text class="fs36" decode='true' space='true'>&nbsp;{{userInfo.redPacketMoney}}&nbsp;</text>元
+    </view>
+  </view>
+</view>
+<!-- 优惠券等菜单 -->
+<view class="w690 mgLeft30 mgTop15">
+  <block wx:for="{{menu}}" wx:for-item="v" wx:key="index">
+    <view class=" w120 fl mgTop30 mgLeft40 tc" data-type="{{v.type}}" bindtap='walletPage'>
+      <image class="" src="{{v.img}}" style="margin-top:{{(60-v.height)}}rpx;width:{{v.width}}rpx;height:{{v.height}}rpx"></image>
+      <view class="fs24 fc-666">{{v.cont}}</view>
+    </view>
+  </block>
+</view>
+<view class="clearB"></view>
+<view class="w690 mgLeft30 mgTop30 line-e8"></view>
+
+<!-- 服务 -->
+<view class="fs32 mgTop30 mgLeft30">服务</view>
+<view class=" mgTop15">
+  <block wx:for="{{server}}" wx:for-item="v" wx:key="index">
+    <view class=" fl mgTop30 tc mgLeft30}}" style="width:148rpx;height:156rpx;background:{{v.bg}}" data-type="{{v.type}}" hover-class="press-style" hover-stay-time="100" bindtap='toServerPage'>
+      <image class="" style="margin-top:{{(80-v.height)}}rpx;width:{{v.width}}rpx;height:{{v.height}}rpx" src="{{v.img}}"></image>
+      <text class="fs24 db" style="color:{{v.color}}">{{v.cont}}</text>
+    </view>
+  </block>
+</view>
+<view class="clearB"></view>
+<view class="w690 mgLeft30 mgTop30 line-e8"></view>
+<!-- 新奇 -->
+<!-- <view class="fs32 mgTop30 mgLeft30">新奇</view>
+<view class="w690 mgLeft30 mgTop15">
+  <block wx:for="{{novel}}" wx:for-item="v" wx:key="index">
+    <view class=" w120 fl mgTop30 mgLeft40 tc" bindtap='lookNovel'>
+      <image class="w50 h50 " src="{{v.img}}"></image>
+      <view class="fs24 fc-666">{{v.cont}}</view>
+    </view>
+  </block>
+</view> -->
+<view class="h50"></view>

@@ -1,0 +1,44 @@
+<i-toast id="toast" />
+<view class="fs36 fc-444 mgTop50 mgLeft30 dlb">
+  请完善个人信息</view>
+<image class='fr h200' src="/images/login/login_icon_fir@3x.png" style='width:200rpx;margin-right:-70rpx;margin-top:0rpx;'></image>
+<view class=" mgTop100">
+  <image src="{{userPhoto}}" bindtap='updatePhoto' style='border-radius:50%;width:132rpx;height:132rpx;margin-left:310rpx;'></image>
+
+</view>
+<view class="tc mgTop15 fs24 fc-666">点击修改头像</view>
+
+<view style="height:80rpx;margin-top:100rpx;width:100%">
+  <image class='fl' src="/images/login/login_icon_name@3x.png" style='width:35rpx;height:40rpx;margin-left:120rpx;'></image>
+  <view class='fl'>
+    <input type='text' class='fl w400 fs28 mgLeft30' maxlength='30' bindinput='getNickName' value='{{nickName}}' placeholder='请输入你的昵称'></input>
+  </view>
+  
+</view>
+<view style="height:80rpx;">
+  <image src="/images/login/login_icon_bri@3x.png" style='width:38rpx;height:40rpx;margin-left:120rpx;'></image>
+  <!-- <input class='dlb fs28 mgLeft30'  placeholder='1990-01-01'></input> -->
+  <view class="section dlb mgLeft30" style='width:250rpx;height:60rpx;'>
+    <picker mode="date" value="{{date}}" start="1940-01-01" end="{{endDate}}" bindchange="changeDate">
+      <view class="fs28 fc-666 picker">{{date}}</view>
+    </picker>
+  </view>
+</view>
+
+<button type="default" class="btn mgTop150 fs32" disabled='{{disabled}}' bindtap='saveUserMsg' style='color:#28d7cc;margin-top:160rpx'>完成</button>
+<!-- 底部图片 -->
+<image class='psnF' src="/images/login/login_icon_t@3x.png" style='width:150rpx;height:150rpx;bottom:60rpx;left:30rpx;'></image>
+<image class='psnF' src="/images/login/login_icon_tr@3x.png" style='width:257rpx;height:246rpx;bottom:10rpx;right:10rpx;'></image>
+
+<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="drawer_box2" wx:if="{{showModalStatus}}">
+  <view class='mgLeft60 w630 h450 bg-fff bRadius30' style="width:600rpx;">
+    <view class='h30'></view>
+    <view class='h60 lh60 fs30 fc-444 tc'>请选择一个头像</view>
+    <block wx:for="{{data}}" wx:key="index">
+      <view class="fl mgLeft60 mgTop30">
+        <image class="w120 h120 bRadius50" src="{{item.headImg}}" data-headid="{{item.headId}}" bindtap='checkPhoto'></image>
+      </view>
+    </block>
+  </view>
+</view>

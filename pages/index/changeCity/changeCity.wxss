@@ -1,0 +1,22 @@
+/* pages/index/changeCity/changeCity.wxss */
+.list-name {
+  position: relative;
+  font-size: 28rpx;
+  padding: 20rpx;
+  padding-left: 30rpx;
+  color: #444;
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+}
+.markBox{
+  display:inline-block;
+  height:60rpx;
+  width:30rpx;
+  
+}
+.mark{
+  width:22rpx;
+  height:28rpx;
+}

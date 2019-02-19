@@ -1,0 +1,10 @@
+.drawer_box2 {
+  width: 710rpx;
+  overflow: hidden;
+  position: fixed;
+  top: 15%;
+  left: 0;
+  z-index: 20;
+  /* background: #fafafa; */
+  margin: 0px 20rpx 0 20rpx;
+}

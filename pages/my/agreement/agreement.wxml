@@ -1,0 +1,30 @@
+<view class="tc fs36">纯氧健身充值协议</view>
+<view class='padding30 lh50'>
+  <view class='fs28'>尊敬的用户，为保障您的合法权益，请您在充值前仔细阅读本协议，以免造成误解。当您点击“立即充值”按钮后，即视为您已阅读、理解本协议，并同意按本协议的规定参与充值。</view>
+  <view class='fs28 fontB mgTop30'>1．账号余额构成：</view>
+  <view class='fs28 mgTop20'>您的纯氧健身账号余额构成包括您通过第三方支付软件向您的纯氧健身账号实际支付的金额和纯氧健身通过充值赠送的金额构成。</view>
+
+  <view class='fs28 fontB mgTop30'>2．账号余额有效期：</view>
+  <view class='fs28 mgTop20'>纯氧健身账号余额的有效期为自充值之日起至使用完毕为止。</view>
+
+  <view class='fs28 fontB mgTop30'>3．账户余额的使用规则：</view>
+  <view class='fs28 mgTop20'>（1）账号余额仅可用于APP软件内使用，可以支付活动、会员卡充值等，不可提现；</view>
+  <view class='fs28 mgTop20'>（2）账号使用期间，第三方支付软件充值的金额将会被优先使用;</view>
+  <view class='fs28 mgTop20'>（3）充值赠送金额在以下情形将会失效：</view>
+
+  <view class='fs28 mgTop20 mgLeft20'>a：您主动注销用户账号；</view>
+  <view class='fs28 mgTop20 mgLeft20'>b：您未使用真实充值部分的费用；</view>
+  <view class='fs28 mgTop20 mgLeft20'>c：因涉嫌作弊导致您的用户账户被冻结或关闭；</view>
+  <view class='fs28 mgTop20 mgLeft20'>d：其他根据相关说明或规则导致我们无法向您提供服务或停用服务的情形。</view>
+
+  <view class='fs28 fontB mgTop30'>4．正当性保证：</view>
+  <view class='fs28 mgTop20'>我们包含充值赠送在内的所有优惠推广活动仅面向正当、合法使用我们车辆的用户。一旦您存在利用我们的规则漏洞进行任何形式的作弊行为（包括但不限于通过我们的活动获得不正当的经济利益），我们有权取消与作弊行为相关账户的赠送金额，追回您作弊所得的不正当经济利益、关闭作弊账户或与您相关的所有账户，并保留取消您后续使用我们服务的权利，及依据严重程度追究您的法律责任。</view>
+
+  <view class='fs28 fontB mgTop30'>5．特别说明</view>
+  <view class='fs28 mgTop20'>（1）您完全理解并同意，纯氧健身有权随时修改本协议内容，届时将通过纯氧健身官网或“纯氧健身”APP公布修改后的协议，该公布将视为纯氧健身已通知用户；同时，纯氧健身也有权通过其他适当方式通知用户。如您选择继续充值即表示您同意并接受修改后的协议并受其约束；如您不同意我们对本协议的修改，请立即放弃充值或停止使用本服务。</view>
+
+<view class='tr fs28 fontB mgTop30'>本协议最终解释权归纯氧健身所有</view>
+
+
+
+</view>

@@ -1,0 +1,26 @@
+<view class="line-8e psnF top0 left0"></view>
+<block wx:for="{{voucherList}}" wx:for-item="v" wx:key="">
+  <view class='w690 h220 mgLeft30 bg-fff mgTop30 bRadius30 '>
+    <view class="voucher fl w260 h220  " style='background-size:cover;background-image:url({{orderBg1}})'>
+      <view class='tc h100 mgTop30 fc-fff' style='font-size:72rpx;'>{{v.money}}<text class='fs36 mgLeft10'>¥</text>
+      </view>
+      <view class='fs28 fc-fff tc'>{{v.couponExplan}}</view>
+    </view>
+    <view class='fl mgLeft30 w400'>
+      <view class='fs28 fontB fc-666 mgTop20'>抵用券</view>
+      <view class='fs20 fc-7a mgTop10'>有效期：
+        <text class='fc-28d7cc'>{{v.aeadStartTime}}\t至\n{{v.aeadTime}}</text>
+      </view>
+      <view class='fr mgRight30 w120 h50 lh50 fs24 fc-28d7cc border-28d7cc tc bRadius25' bindtap='enterUse'>使用</view>
+      <view class='fs24 fc-666 mgTop20'>纯氧共享健身</view>
+    </view>
+  </view>
+
+</block>
+<!-- 无数据时占位图 -->
+<view wx:if="{{voucherList.length ===0}}" class="marginTop30">
+  <view>
+    <image class="w280 h220 mgLeft235" src="{{notVoucher}}"></image>
+  </view>
+  <view class="fs28 fc-999 tc mgTop20">暂无优惠券</view>
+</view>

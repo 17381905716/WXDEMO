@@ -1,0 +1,22 @@
+<i-toast id="toast" />
+<view class="wth100 psnF left0 top0 line-e8"></view>
+
+<block wx:for="{{presentList}}" wx:key="" wx:for-item="v">
+  <view class='w690 mgLeft30 mgTop30'>
+    <view class='fs32 fc-444 tl'>鼓励金卡兑换
+      <text class='fontB fc-28d7cc fr'>{{v.money}}元</text>
+    </view>
+    <view class='fs26 fc-999 tl mgTop10'>兑换时间：{{v.exchangeTime}}
+      <text class='fs32 fc-999 fr'>兑换成功</text>
+    </view>
+  </view>
+  <view class='line-e8 mgTop30'></view>
+</block>
+
+<!-- 没有提现记录 -->
+<view wx:if="{{presentList.length==0}}" class="marginTop30">
+  <view class='tc'>
+    <image class="w280 h220 " src="/images/public/mypost_icon_com_no@3x.png"></image>
+  </view>
+  <view class="fs28 fc-999 tc mgTop20">暂无兑换记录</view>
+</view>

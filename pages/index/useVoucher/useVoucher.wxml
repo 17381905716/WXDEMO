@@ -1,0 +1,27 @@
+<i-toast id="toast" />
+
+<block wx:for="{{list}}" wx:for-item="v" wx:key="">
+  <view class='w690 h220 mgLeft30 bg-fff mgTop30 bRadius30 '>
+  <view class="voucher fl w260 h220 " style="background-size:cover;background-image:url({{enabled?orderBg1:orderBg2}})">
+    <view class="tc h100 mgTop30 {{enabled?'fc-fff':'fc-9e'}}" style='font-size:72rpx;'>{{v.money}}<text class='fs36 mgLeft10'>¥</text>
+    </view>
+    <view class="tc fs28 {{enabled?'fc-fff':'fc-9f'}}">{{v.couponExplan}}</view>
+  </view>
+  <view class='fl mgLeft30 w400' data-id="{{v.couponUserId}}" bindtap='checkVoucher'>
+    <view class='fs28 fontB fc-666 mgTop20'>抵用券</view>
+    <view class='fs20 fc-7a mgTop10'>有效期：<text class='fc-28d7cc lh40'>{{v.aeadTime}}</text></view>
+    <image class='fr w36 h36 mgRight30' src="{{v.checked?checkImg:notCheckImg}}"></image>
+  </view>
+</view>
+</block>
+
+<!-- 无数据时占位图 -->
+<view wx:if="{{list.length ===0}}" class="marginTop30">
+  <view>
+    <image class="w280 h220 mgLeft235" src="{{notVoucher}}"></image>
+    
+  </view>
+  <view class="fs28 fc-999 tc mgTop20">暂无优惠券</view>
+</view>
+
+

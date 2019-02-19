@@ -1,0 +1,83 @@
+<i-toast id="toast" />
+<view class="w720  mgLeft30 ">
+  <view class="fl dlb w60 h60" bindtap='mapPage'>
+    <image class='fl mgTop15 w36 h36 ' src="/images/index/home_icon_map@3x.png"></image>
+  </view>
+  <view class='fl dlb lh60' bindtap='changeCity'>
+    <text class="fs28 fc-333 mgRight20 "> {{cityName}}</text>
+    <image class="rightImg" src="/images/index/my_icon_map_city@3x.png"></image>
+  </view>
+  <!-- 扫码图片 -->
+  <view class='fr w80 h60 ' bindtap='toScanPage'>
+    <image class="w40 h40 fr mgTop10 mgRight30" src="/images/dynamic/home_icon_scan@2x.png"></image>
+  </view>
+  <!-- 搜索框 -->
+  <view class="weui-search-bar__form w400 fr mgRight30 ">
+    <view class="weui-search-bar__box bg-eee ">
+      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+      <input type="text" class="weui-search-bar__input " maxlength='30' placeholder="输入健身房名称" disabled='true' bindtap="searchFitness" />
+    </view>
+  </view>
+</view>
+<view class='clearB'></view>
+<view wx:if="{{advertImg.length==0 || advertImg == null }}">
+  <image class="w690 h310 mgLeft30 mgTop30 bRadius20" mode="aspectFill" src="{{noDataImg1}}"></image>
+</view>
+<!-- 轮播图片 -->
+<view wx:if="{{advertImg.length>0}}">
+  <swiper class="w690 h310 mgLeft30 mgTop30" indicator-dots="{{advertImg.length==1?false:true}}" indicator-color="rgba(255, 255, 255, 1)" indicator-active-color="#28d7cc" autoplay="true" circular="true" interval="5000" duration="1000">
+    <block wx:for="{{advertImg}}" wx:key="index">
+      <swiper-item>
+        <image src="{{item.advertImg}}" class="w690 h310 bRadius20" mode="aspectFill" data-url="{{item.advertUrl}}" data-type="{{item.advertUrlType}}" bindtap='jumpOtherPage' />
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<view wx:if="{{nearActivity.length>0}}" class="mgTop50 mgLeft30 fs32 fc-333 fontB">活动推荐</view>
+<scroll-view scroll-x style='display:flex;white-space: nowrap;' class=" mgTop30">
+  <block wx:for="{{nearActivity}}" wx:key="index">
+    <image class="w230 h120 mgLeft30 bRadius15 dlb" src="{{item.advertImg}}" data-url="{{item.advertUrl}}" data-type="{{item.advertUrlType}}" bindtap='jumpOtherPage'></image>
+  </block>
+</scroll-view>
+<!-- 根据条件进行搜索 -->
+<scroll-view scroll-x style='display:flex;white-space: nowrap;' scroll-with-animation="true" class="wth100 mgTop10 mgRight50">
+  <block wx:for="{{sType}}" wx:for-item="v" wx:key="index">
+    <text class="dlb h80 lh80 fs28 mgLeft40  {{v.checked == true ? 'fc-28d7cc line-28d7cc' : 'fc-999'}} " data-index="{{index}}" data-sid="{{v.fitnessTypeId}}" bindtap="choose">{{v.fitnessTypeName}}</text>
+  </block>
+</scroll-view>
+<!-- 健身房列表 -->
+<view wx:if="{{fitness.length==0 && !noFitnessData}}">
+  <image class="w690 h380 mgLeft30 mgTop30 bRadius20" mode="aspectFill" src="{{noDataImg1}}"></image>
+</view>
+<view class="w690 mgLeft30">
+  <block wx:for="{{fitness}}" wx:key="index" >
+    <template is="fitness" data="{{...item,openImg,closeImg,starImg,noStarImg,array}}">
+    </template>
+  </block>
+  <view class='h20'></view>
+</view>
+<!-- 加载更多数据提示 -->
+<view wx:if="{{loading}}">
+  <i-load-more/>
+</view>
+<!-- 没有健身房列表数据 -->
+<view wx:if="{{fitness.length==0 && noFitnessData}}" class="mgTop50" bindtap='jumpCoursePage'>
+  <view>
+    <image class="w280 h220 mgLeft235" src="{{noFitnessImg}}"></image>
+  </view>
+  <view class="fs28 fc-999 tc mgTop20">{{noFitnessText}}</view>
+</view>
+
+<view class="h40"></view>
+
+<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="drawer_box2" wx:if="{{showModalStatus}}">
+  <view class='mgLeft60 w630 bg-fff bRadius30' style="width:600rpx;">
+    <view>
+      <button open-type="openSetting" bindopensetting="openSettingPage">打开设置页</button>
+    </view>
+  </view>
+</view>
+<!-- 引入健身房模板使用 -->
+<import src="/pages/template/fitness.wxml" />

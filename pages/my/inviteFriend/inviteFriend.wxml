@@ -1,0 +1,30 @@
+<view class='line-e8 wth100 psnF left0 top0'></view>
+<view class="padding30">
+  <view class="w690 h330" style='background-size:cover;background-image:url({{inviteImg}});'>
+    <view class="h100"></view>
+    <view class='fs28 fc-fff tc'>
+      <text decode='true' space='true'>邀&nbsp;&nbsp;请&nbsp;&nbsp;好&nbsp;&nbsp;友</text>
+    </view>
+    <view class="fs46 fc-fff tc mgTop30">得1-99元提现红包</view>
+  </view>
+</view>
+<!-- 邀请好友方式 -->
+<view class=' padding30 '>
+  <block wx:for="{{wayData}}" wx:for-item="v" wx:key="index">
+    <view class='fl h200 tc wth33 '>
+      <image class="w120 h120 " data-type="{{v.type}}" bindtap="inviteFriend" src="{{v.img}}"></image>
+      <view class='fs26 fc-666 mgTop15'>{{v.text}}</view>
+    </view>
+  </block>
+</view>
+<view class='clearB'></view>
+<block wx:for="{{inviteData}}" wx:for-item="v" wx:key="index">
+  <view class=' padding50 mgTop30'>
+    <image class=' fl w80 h80 bRadius50 bg-ccc'></image>
+    <view class="fl mgLeft30">
+      <view class="fs24 fc-666 mgTop10">{{v.name}}</view>
+      <view class="fs20 fc-999 mgTop10">{{v.date}}</view>
+    </view>
+    <view class="fr mgTop15 w190 h60 lh60 tc fs26 fc-28d7cc border-28d7cc bRadius30">拆红包</view>
+  </view>
+</block>

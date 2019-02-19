@@ -1,0 +1,9 @@
+
+page{
+  background: #F7F7F7;
+}
+.markImg{
+  width:18rpx;
+  height:22rpx;
+  margin-right:20rpx;
+}

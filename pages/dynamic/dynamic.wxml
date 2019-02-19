@@ -1,0 +1,140 @@
+
+<i-toast id="toast" />
+<view class=" h80 lh80 psnF bg-fff" style='width:720rpx;top:0rpx;left:30rpx;z-index:999'>
+  <image class='w40 h40 ' src="{{logoImg}}"></image>
+  <view class='fr w80 h80 lh80 tc' bindtap='toScanPage'>
+      <image class=' w40 h40 ' src="{{scanImg}}"></image>
+  </view>
+</view>
+<!-- <view class='line-e8 mgTop10'></view> -->
+<view class='wth100 h80 psnF bg-fff' style='top:80rpx;left:0rpx;z-index:999'>
+  <scroll-view scroll-x style='display:flex;white-space: nowrap;width:650rpx;' class="fl  bg-fff">
+    <block wx:for="{{sType}}" wx:for-item="v" wx:key="index">
+      <text style='' class="dlb h80 lh80 fs28 {{index > 0 ? ' mgLeft40' : ' mgLeft30'}} {{v.checked == true ? 'fc-28d7cc line-28d7cc' : 'fc-999'}}" data-type="{{v.type}}" bindtap="chooseTab">{{v.text}}</text>
+    </block>
+  </scroll-view>
+  <view class='w80 h80 lh80 fr mgTop10' bindtap='toaddNews'>
+    <image class="w38 h32 mgLeft20" src="/images/public/found_icon_iss@3x.png"></image>
+  </view>
+</view>
+<view class='wth100' style='height:160rpx;'></view>
+<view wx:if="{{sType[0].checked || sType[2].checked}}">
+  <block wx:for="{{dtDetail}}" wx:key="" wx:for-item="v">
+
+    <view class='w690 mgLeft30 mgTop30 h100 psnR'>
+      <image wx:if="{{v.vipType ==1}}" class='w40 h30 psnA' style='top:-1rpx;left:37rpx;' src="{{memberImg}}"></image>
+      <image class='w72 h72 fl bRadius50 mgTop15' src="{{v.headImg?v.headImg:noHeadImg}}" data-num="{{v.userNumber}}" bindtap='lookOtherPage'></image>
+      <view class=" fl mgLeft30 dlb">
+        <view class="w500 omit h40 lh40 mgTop20 fs26 fc-666">{{v.nickName}}</view>
+        <view class="w60 fs16 fc-fff tc {{v.sex==2?'bg-ff79b8':'bg-76e1ff'}}" style='height:24rpx;line-height:24rpx;border-radius:12rpx;'>
+          <image wx:if="{{v.sex==2}}" class='vMiddle' style='width:12rpx;height:18rpx;' src="{{womanImg}}"></image>
+          <image wx:if="{{v.sex<2}}" class='vMiddle' style='width:15rpx;height:15rpx;' src="{{manImg}}"></image>
+          <text class='mgLeft10 '>{{v.age}}</text>
+        </view>
+      </view>
+      <view class="fr mgTop15">
+        <!-- <image class=" h40 vMiddle" style='width:10rpx;' bindtap="likeComment" src="{{moreHandle}}"></image> -->
+      </view>
+    </view>
+    <view data-user="{{v.userNumber}}" data-num="{{v.forumNumber}}" bindtap='toDetailPage'>
+      <view wx:if="{{v.context}}" class='w690 h50 lh50 mgLeft30  fs32 fc-666 omit'>{{v.context}}</view>
+      <!-- 自己分享的动态 -->
+      <view class="w690 mgLeft30 fs28 bRadius20 {{v.childForum?'bg-f8':''}}">
+        <view class='h60 lh60 omit' wx:if="{{v.childForum}}">
+          <image class='w25 h30 mgLeft20 mgTop20' src="{{selfShareImg}}"></image>
+          <text class='fc-28d7cc mgLeft15'>{{v.childForum.nickName}}：</text>
+          <text class='fc-666'>{{v.childForum.context}}</text> 
+        </view>
+        <!-- 一张图片 -->
+        <view wx:if="{{v.mediaList.length==1}}">
+          <image class='w690 h660 mgTop20 bRadius15' mode="aspectFill" src="{{v.mediaList[0].url}}"></image>
+        </view>
+        <!-- 二张图片 -->
+        <view wx:if="{{v.mediaList.length==2}}">
+          <block wx:for="{{v.mediaList}}" wx:key="" wx:for-item="sv">
+            <image class='dlb mgTop20 bRadius15 mgLeft30' mode="aspectFill" style='width:315rpx;height:220rpx;' src="{{sv.url}}"></image>
+          </block>
+        </view>
+        <!-- 三张图片及以上 -->
+        <view wx:if="{{v.mediaList.length >= 3}}" class="{{v.mediaList.length>3?'h360':'h185'}}" >
+          <block wx:for="{{v.mediaList}}" wx:key="" wx:for-item="sv">
+            <image wx:if="{{index<6}}" class='dlb mgTop20 bRadius15 mgLeft25' mode="aspectFill" style='width:200rpx;height:165rpx;' src="{{sv.url}}"></image>
+          </block>
+        </view>
+        <view class='h20'></view>
+      </view>
+    </view>
+    <view class='w690 mgLeft30 h50 lh50'>
+      <view  wx:if="{{v.address}}" class="fl mgTop10 bRadius20 bg-eee fs20 fc-666 omit">
+        <image class='mgLeft20' style='width:18rpx;height:22rpx;' src="{{addressImg}}"></image>
+        {{v.address}}
+        <view class='fr' style='width:15rpx;height:22rpx;'></view>
+      </view>
+      <view class='fr mgTop5 fs24 fc-999'>
+        <text>{{v.timeDesc?v.timeDesc:'现在'}}\t\t·\t\t<text wx:if="{{v.address}}">{{v.distance}}km\t\t·\t\t </text>{{v.plays}}\t阅读</text>
+      </view>
+    </view>
+    <view class='clearB'></view>
+    <!-- 点赞数、评论数、转发 -->
+    <view class='w690 mgLeft30 mgTop10 fc-a8 fs24 lh40'>
+      <view class='fl dlb w80 h80 ' data-id="{{v.forumId}}" data-islike="{{v.isPraise}}" bindtap='likeNews'>
+        <image class='fl mgLeft20 mgTop20 w40 h40' src="{{v.isPraise?'/images/dynamic/like_se@2x.png':likeImg}}"></image>
+      </view>
+      <text class="fl mgTop20">{{v.praise}}</text>
+      <image class='fl w36 h36 mgLeft60 mgTop20' src="{{commentImg}}" data-user="{{v.userNumber}}" data-num="{{v.forumNumber}}" bindtap='toDetailPage'></image>
+      <text class="fl mgLeft15 mgTop20">{{v.views}}</text>
+      <image class='fl w36 h40 mgLeft60 mgTop20' src="{{dynamicImg}}" data-fid="{{v.forumId}}" bindtap='toForward'></image>
+    </view>
+    <view class='clearB'></view>
+    <view class='line-e8 mgTop30'></view>
+  </block>
+</view>
+<!-- 附近的人 -->
+<view wx:if="{{sType[1].checked}}">
+  <block wx:for="{{nearPeople}}" wx:key="" wx:for-item="v">
+    <view class='w690 mgLeft30 mgTop50 h200 psnR' data-num="{{v.userNumber}}" bindtap='lookOtherPage'>
+      <image wx:if="{{v.vipType==1}}" class='w80 h60 psnA' style='top:-18rpx;left:80rpx;' src="{{memberImg}}"></image>
+      <image class='w150 h150 fl bRadius50 mgTop15' src="{{v.headImg?v.headImg:noHeadImg}}"></image>
+      <view class=" fl mgLeft30 dlb mgTop10">
+        <view class="w500 h40 mgTop30 ">
+          <text class='w340 dlb fs32 fc-444 omit'>{{v.nickName}}</text>
+          <text class="fr mgTop10 dlb fs24 fc-b7">距您\t{{v.distance}}</text>
+        </view>
+        <view class="w60 fs16 fc-fff tc mgTop20 {{v.sex==2?'bg-ff79b8':'bg-76e1ff'}}" style='height:24rpx;line-height:24rpx;border-radius:12rpx;'>
+          <image wx:if="{{v.sex==2}}" class='vMiddle' style='width:12rpx;height:18rpx;' src="{{womanImg}}"></image>
+          <image wx:if="{{v.sex<2}}" class='vMiddle' style='width:15rpx;height:15rpx;' src="{{manImg}}"></image>
+          <text class='mgLeft10 '>{{v.age}}</text>
+        </view>
+        <!-- <text class='fs28 dlb w500 omit fc-999 '>{{v.introduction?v.introduction:'暂无个性签名'}}</text> -->
+      </view>
+    </view>
+    <view class='line-e8 w690 mgLeft30 mgTop30'></view>
+  </block>
+</view>
+
+<!-- 没有发布帖子-->
+<view wx:if="{{dtDetail.length==0 && (sType[0].checked || sType[2].checked)}}" class="marginTop30 ">
+  <view class=''>
+    <image class="w280 h220 mgLeft235" src="/images/public/vidi_icon_no@3x.png"></image>
+  </view>
+  <text class="db tc fs28 fc-999 mgTop20">暂无数据</text>
+  <view class='h30'></view>
+</view>
+<!-- 暂无附近的人-->
+<view wx:if="{{nearPeople.length==0 && sType[1].checked}}" class="marginTop30">
+  <view>
+    <image class="w280 h220 mgLeft235" src="{{myFollow}}"></image>
+  </view>
+  <view class="fs28 fc-999 tc mgTop20">暂无附近的人</view>
+</view>
+
+<!-- 举报类型选择面板 -->
+<i-action-sheet visible="{{ showReport }}" actions="{{ actions1 }}" show-cancel bind:cancel="handleAction" bind:click="handleAction" />
+
+<i-modal visible="{{ showModal }}" bind:ok="handleClose" bind:cancel="handleClose">
+  <view>确定举报该帖子？</view>
+</i-modal>
+
+<!-- <i-modal visible="{{ showDelete }}" bind:ok="deleteClose" bind:cancel="deleteClose">
+  <view>确定删除该帖子？</view>
+</i-modal> -->

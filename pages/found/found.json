@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "i-toast": "../../../dist/toast/index",
+    "i-tabs": "/dist/tabs/index",
+    "i-tab": "/dist/tab/index"
+  }
+}

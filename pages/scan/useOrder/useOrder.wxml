@@ -1,0 +1,67 @@
+<view class='line-e8 wth100 psnF left0 top0'></view>
+<i-toast id="toast" />
+<block wx:for="{{orderData}}" wx:for-item="v" wx:key="index">
+  <view class=" w690 mgLeft30 mgTop30 h450 bRadius20 bg-fff fc-999 border-28d7cc" data-id='{{v.buyServiceId}}' data-num='{{v.buyServiceNumber}}' bindtap='checkedOrder'>
+    <view class="h100 lh100 fs28 tl mgLeft30 fc-444">今日可用订单
+      <view class="fr mgRight30 fc-999">
+        <text class="fs24 paddingR20">{{v.useStopTime}}</text>
+        <!-- <image class='w30 h30' src="{{v.isToday == true ?askImg1:askImg2}}"></image> -->
+      </view>
+    </view>
+    <view class='clearB'></view>
+    <view class=" h50 lh50 fs46 tc fc-28d7cc">{{v.buyServiceNumber}}</view>
+    <view class='fs32 fc-28d7cc mgLeft30 mgTop40'>{{v.fitnessActivityName}}
+      <view class="fr mgRight30">{{v.payServiceMoney}}
+        <text class="fs24">¥</text>
+      </view>
+    </view>
+    <view class='w630 mgLeft30 mgTop10'>
+      <image class="" style="width:22rpx;height:20rpx;" src="{{nameImg2}}"></image>
+      <text class="fs24 mgLeft15 ">{{v.fitnessName}}</text>
+    </view>
+    <view class='w630 mgLeft30 '>
+      <view class="fl">
+        <image class="fl mgTop10 " style="width:18rpx;height:22rpx;" src="{{addressImg2}}"></image>
+        <text style='width:450rpx;' class="fl dlb lh40 fs24 mgLeft15 fc-999">{{v.fitnessAddress}}</text>
+        <!-- <text class="fs24  mgLeft15">{{v.fitnessAddress}}</text> -->
+      </view>
+      <image class="w36 h36 fr mgTop10" src="{{v.checked?tickChecked:noChecked}}"></image>
+    </view>
+    <view class='clearB'></view>
+    <view class="w630 mgLeft30 h50 lh50 fc-444">
+      <image class='w20 h20' src="{{useImg2}}"></image>
+      <text class='fs20 mgLeft15'> 随时退</text>
+      <image class='w20 h20 mgLeft40' src="{{useImg2}}"></image>
+      <text class='fs20 mgLeft15'> 过期自动退</text>
+      <image class='w20 h20 mgLeft40' src="{{useImg2}}"></image>
+      <text class='fs20 mgLeft15'> 放心使用</text>
+    </view>
+  </view>
+</block>
+<view class='h120'></view>
+<view class="wth100 h100 lh100 psnF left0 bottom0 tc fs32 fc-fff bg-28d7cc" bindtap='useOrder'>确定</view>
+
+<view class="drawer_screen" wx:if="{{showModalStatus}}" bindtap='backScanPage'>
+
+</view>
+<view animation="{{animationData}}" class="drawer_box2" wx:if="{{showModalStatus}}">
+  <view class=' tc' style="margin-left:105rpx;width:480rpx;height:500rpx;background-size: cover;background-image:url({{redPacketImg}});">
+    <!-- <image class="" style='width:480rpx;height:45vh;' src="{{redPacketImg}}"></image> -->
+    <image class="w140 h140 {{longScreen?'mgTop130':'mgTop90'}}" animation="{{animation1}}" src="/images/public/succ_img_mo@3x.png"></image>
+    <!-- //红包未拆 -->
+    <view wx:if="{{!alreadyUsed}}" class='tc'>
+      <text class="fs24 fc-fff mgTop50 db ">恭喜获得神秘鼓励金</text>
+      <text class="dlb fs32  w300 h60 lh60 mgTop30 bRadius30" style="background:#ffe568;color:#fe434e" bindtap='getMoney'>立即打开</text>
+      <!-- <text class="fs20 fc-fff mgTop50 dlb ">活动期间：{{startTime}}~{{endTime}}</text> -->
+    </view>
+    <!-- 红包已经拆开 -->
+    <view wx:if="{{alreadyUsed}}" class="fc-ffe87c">
+      <text class="fs40 db mgTop50">恭喜您~</text>
+      <text class="fs30 db mgTop5">获得了{{redPacketNum}}元鼓励金~</text>
+      <!-- <text class="fs24 db mgTop50">您的鼓励金已放入可提现账户~</text> -->
+    </view>
+  </view>
+  <view wx:if="{{alreadyUsed}}" class='tc'>
+    <image class="w50 h50 mgTop50" bindtap="powerDrawer" data-statu="close" src='{{closeImg}}'></image>
+  </view>
+</view>

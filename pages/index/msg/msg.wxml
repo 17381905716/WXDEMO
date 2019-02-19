@@ -1,0 +1,23 @@
+<view class='line-e8 wth100 psnF left0 top0'></view>
+<block wx:for="{{msgData}}" wx:key="index" wx:for-item="v">
+  <view class="h190 w690 mgLeft30 mgTop30 bg-fff bRadius20">
+    <view class="h190 w690 " hover-class="bg-eee">
+      <image class=" fl mgTop50 mgLeft30" style='width:88rpx;height:88rpx;' src="{{v.img}}"></image>
+      <view class='mgLeft30 mgTop40 fl w520'>
+        <view class="fc-444 fs30">{{v.messagetitle}}
+          <text class=' fs20 fc-ccc fr mgTop10 '>{{v.messagetime}}</text>
+        </view>
+        <view class='fc-999 fs24 lh40 mgTop10'>{{v.messagetext}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- <view class=" line-e8 h25"></view> -->
+  <view class='clearB'></view>
+</block>
+
+<view wx:if="{{msgData.length == 0 && noData}}" class="marginTop30">
+  <view>
+    <image class="w280 h220 mgLeft235" src="/images/public/mypost_icon_com_no@3x.png"></image>
+  </view>
+  <view class="fs28 fc-999 tc mgTop20">暂时没有消息</view>
+</view>

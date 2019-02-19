@@ -1,0 +1,119 @@
+<i-toast id="toast" />
+<!-- 无数据时，占位图 -->
+<view wx:if="{{videoDetail.length==0}}">
+  <image class="wth100 h450 mgTop20" mode="aspectFill" src="{{noDataImg1}}"> </image>
+</view>
+<view class='wth100 h450'>
+  <!-- 封面图片 -->
+  <view wx:if="{{faceShow}}" class='wth100 h450 psnR' data-id="{{videoDetail.classInfo.classId}}" bindtap='playVideo'>
+    <image class='wth100 h450' mode="aspectFill" src="{{bgImg}}"></image>
+    <image class="w100 h100  psnA" style='top:150rpx;left:325rpx;' src="{{playBtn}}"></image>
+  </view>
+  <!-- 视频 -->
+  <video wx:if="{{videoShow}}" class='' data-index="{{videoIndex}}" bindended="playEnd" style="height:450rpx;width:100vw;" src="{{videoUrl}}" autoplay controls></video>
+</view>
+
+<!-- 详情内容 -->
+<view class="padding_10_30 ">
+  <view class='fs30 fc-333 dlb'>{{videoDetail.classInfo.classTitle}}</view>
+  <image class='w30 h30 mgLeft30 vMiddle' src="{{playImg}}"></image>
+  <text class=" mgLeft20 fs24 fc-ccc">{{videoDetail.classInfo.classPlay}}次</text>
+  <!-- 收藏 -->
+  <view class='fr w60 h60 tc lh60 dlb' data-collect="{{videoDetail.isCollect}}" data-num="{{videoDetail.classInfo.classNumber}}" bindtap='collectVideo'>
+    <image class='w34 h32' src="{{videoDetail.isCollect ==1?fullStar:halfStar}}"></image>
+  </view>
+  <!-- 点赞 -->
+  <view class='fr mgRight30 w60 h60 tc lh60 ' data-id="{{videoDetail.classInfo.classId}}" bindtap='likeVideo'>
+    <image class='w34 h30' src="{{videoDetail.isPraise ==1?fullLike:halfLike}}"></image>
+  </view>
+</view>
+<view class="w690 mgLeft30 mgTop15 fs28 fc-999 lh45 newLine">{{videoDetail.classInfo.classDescription}}</view>
+<view class="mgTop30 h30">
+  <view class="fr mgRight50 h30" bindtap='autoPlaySet'>
+    <image class='fl w30 h30 paddingR20' src="{{autoPlayVideo == true ? autoPlay : noAutoPlay}}"></image>
+    <text class='fl fs24 fc-999 ' style='line-height:30rpx;margin-top:3rpx;'>自动播放剩余视频</text>
+  </view>
+</view>
+<view class='clearB'></view>
+<!-- 发布人信息 -->
+<view class=' mgTop50 line-e8'></view>
+<view class='w690 mgLeft30 mgTop50 h100 lh100 psnR'>
+  <image wx:if="{{videoDetail.vipType==1}}" class='w40 h30 psnA' style='top:-8rpx;left:46rpx;' src="{{memberImg}}"></image>
+  <image class='w84 h84 mgTop8 fl bRadius50' src="{{videoDetail.headImg?videoDetail.headImg:noHeadImg}}" data-num="{{userNumber}}" bindtap='lookOtherPage'></image>
+  <view class="fl fs30 fc-666 h100 lh100 mgLeft30">{{videoDetail.nickName}}</view>
+  <view class="w156 h62 lh60 dlb fr tc bg-28d7cc bRadius30 mgTop20 fs28 fc-fff" data-about="{{videoDetail.isFollow}}" data-usernumber="{{videoDetail.classInfo.classUpdateId}}" bindtap='about'>{{videoDetail.isFollow ==1 ?'已关注':'关注'}}</view>
+</view>
+<view class='line-e8 mgTop50'></view>
+<!-- 评论详情 -->
+<view class="h60 lh60 fs28 fc-444 mgLeft30 mgTop40">全部评论
+  <view class='fr mgRight30 w60 h60 ' bindtap='lookAgreement' data-status="open">
+    <image class='mgLeft30 w30 h36 mgTop10' src="{{orderImg}}"></image>
+  </view>
+</view>
+
+<view wx:if="{{commentList.length==0 && noCommentData}}" class="mgTop10 tc ">
+  <image class="w280 h220 dlb" src="/images/public/mypost_icon_com_no@3x.png"></image>
+  <text class="db fs28 fc-999 mgTop20">暂无评论</text>
+</view>
+
+<block wx:for="{{commentList}}" wx:for-item="v" wx:key="index">
+  <view wx:if="{{index < 5}}">
+    <view class='w690 mgLeft30 mgTop30 h100 psnR'>
+      <image wx:if="{{v.vipType==1}}" class='w40 h30 psnA' style='top:-1rpx;left:37rpx;' src="{{memberImg}}"></image>
+      <image class='w72 h72 fl bRadius50 mgTop15' src="{{v.headImg?v.headImg:noHeadImg}}" data-num="{{v.commentList.commentUser}}" bindtap='lookOtherPage'></image>
+      <view class=" fl mgLeft30 dlb">
+        <view class="w500 omit h40 lh40 mgTop20 fs26 fc-666">{{v.nickName}}</view>
+        <view class="h40 lh40 fs16 fc-999">{{v.commentList.commentTime}}</view>
+      </view>
+      <view class="fr mgTop15">
+        <image class="padRight20 w30 h30 vMiddle" data-status="{{v.isPraise}}" data-id="{{v.commentList.commentId}}" bindtap="likeComment" src="{{v.isPraise==1?fullLike:'/images/found/found_icon_de_go@3x.png'}}"></image>
+        <text class="fs24 fc-666 fr mgTop15">{{v.commentList.commentPraise}}</text>
+      </view>
+    </view>
+    <view class="w690 mgLeft30 mgTop30 ">
+      <view class="fl h100 "></view>
+      <view class="fr w590">
+        <view class="lh40 fs fc-666 fs24 newLine">{{v.commentList.commentContext}}</view>
+      </view>
+    </view>
+    <view class="clearB"></view>
+    <view class=' line-e8 mgTop20'></view>
+  </view>
+
+</block>
+<view class="fs28 fc-444 mgLeft30 h80 lh80 tc {{commentList.length>5?'db':'dn'}}" bindtap='commentPage'>查看全部评论</view>
+<view class='bg-f8 h20'></view>
+
+
+<!-- 后续课程 -->
+<view class="fs28 fc-444 mgLeft30 mgTop50 {{nextList.length>0?'db':'dn'}}">后续课程</view>
+<view class=" w690 mgLeft30 mgTop30">
+  <block wx:for="{{nextList}}" wx:for-item="v" wx:key="index">
+    <view class='w690 padding30'>
+      <view class="fl dlb psnR" data-id="{{v.classId}}" data-cnum="{{v.courseNumber}}" data-vnum="{{v.classNumber}}" data-index="{{v.classIndex}}" bindtap='lookNextVideo'>
+        <image class="fl w260 h150 bRadius15 " src="{{v.classHeadUrl}}"></image>
+        <!-- <image class="w80 h80 psnA" style='top:35rpx;left:75rpx;' src="{{playBtn}}"></image> -->
+      </view>
+      <view class='w400 fl h80  mgTop40 mgLeft30'>
+        <view class="fs20 fs30 fc-333">{{v.classTitle}}</view>
+        <view class="fs24 fc-ccc mgTop15">
+          <image class='fl w30 h30 paddingR20 vMiddle' src="{{playImg}}"></image>
+          <text>{{v.classPlay}}次</text>
+        </view>
+      </view>
+    </view>
+    <view class='clearB'></view>
+  </block>
+</view>
+<view class='h100'></view>
+<view class='btmView psnF left0 bottom0 wth100 line-ccc'>
+  <image class='w32 h32 fl mgTop20 ' src="/images/found/found_icon_de_co@3x.png"></image>
+  <input type='text' name="cont" class="fs24 fc-666 fl mgLeft20 mgTop15 " maxlength='200' value='{{inputValue}}' cursor-spacing="8" bindinput="checkCont" bindtap='checkProhibit' disabled='{{disable}}' style='width:70vw' placeholder='输入你的评论，一起交流吧~'></input>
+
+  <view style="width:100rpx;" class="mgRight50 h60 lh60 dlb fr tc bg-28d7cc mgTop5 fs28 fc-fff bRadius15" bindtap='submitComment'>提交</view>
+</view>
+
+<!-- 使用发帖协议提示模板 -->
+<template is="agreement" data="{{showAgreement}}"></template>
+<!-- 引入模板 -->
+<import src="/pages/template/agreement.wxml" />

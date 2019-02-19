@@ -1,0 +1,33 @@
+<i-toast id="toast" />
+<view class='wth100 line-e8 psnF left0 top0'></view>
+<block wx:for="{{commentList}}" wx:for-item="v" wx:key="index">
+  <view class='w690 mgLeft30 mgTop30 h100 psnR'>
+    <image wx:if="{{true}}" class='w40 h30 psnA' style='top:-1rpx;left:37rpx;' src="{{memberImg}}"></image>
+    <image class='w72 h72 fl bRadius50 mgTop15' src="{{v.headImg?v.headImg:noHeadImg}}" data-num="{{v.commentList.commentUser}}" bindtap='lookOtherPage'></image>
+    <view class=" fl mgLeft30 dlb">
+      <view class="w500 omit h40 lh40 mgTop20 fs26 fc-666">{{v.nickName}}</view>
+      <view class="h40 lh40 fs16 fc-999">{{v.commentList.commentTime}}</view>
+    </view>
+    <view class="fr mgTop15">
+      <!-- <image class="padRight60 w30 h30" src="/images/found/found_icon_de_re@3x.png"></image> -->
+      <image class="padRight20 w30 h30 vMiddle" data-status="{{v.isPraise}}" data-id="{{v.commentList.commentId}}" bindtap="likeComment" src="{{v.isPraise==1?fullLike:'/images/found/found_icon_de_go@3x.png'}}"></image>
+      <text class="fs24 fc-666 fr mgTop15">{{v.commentList.commentPraise}}</text>
+    </view>
+  </view>
+  <view class="w690 mgLeft30 mgTop30 ">
+    <view class="fl  h100 "></view>
+    <view class="fr w590">
+      <view class="w590 lh40 fs fc-666 fs24 newLine">{{v.commentList.commentContext}}</view>
+    </view>
+  </view>
+  <view class="clearB"></view>
+  <view class=' line-e8'></view>
+</block>
+
+<view class='h120'></view>
+<view class='btmView psnF left0 bottom0 wth100 line-ccc'>
+  <image class='w32 h32 fl mgTop20 ' src="/images/found/found_icon_de_co@3x.png"></image>
+  <input type='text' name="cont" class="fs24 fc-666 fl mgLeft20 mgTop15 " maxlength='200' value='{{inputValue}}' cursor-spacing="8" bindinput="checkCont" bindtap='checkProhibit' disabled='{{disable}}' style='width:70vw' placeholder='输入你的评论，一起交流吧~'></input>
+
+  <view style="width:100rpx;" class="mgRight50 h60 lh60 dlb fr tc bg-28d7cc mgTop5 fs28 fc-fff bRadius15" bindtap='submitComment'>提交</view>
+</view>

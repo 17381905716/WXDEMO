@@ -1,0 +1,8 @@
+/* pages/index/map/map.wxss */
+
+page{
+  height: 100%;
+}
+.downImg{
+
+}

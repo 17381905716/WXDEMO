@@ -1,0 +1,129 @@
+<i-toast id="toast" />
+<view wx:if="{{newsDetail.length==0}}">
+  <image class='wth100 h450' src="{{noDataImg1}}"></image>
+</view>
+<!-- 帖子的图片 -->
+<block wx:if="{{newsDetail.mediaList[0].status ==1}}" wx:for="{{newsDetail.mediaList}}" wx:key="index">
+  <image bindtap='previewImage' mode="widthFix" class=' mgTop30 wth100' src="{{item.faceImg?item.faceImg:noDataImg1}}"></image>
+</block>
+<!-- 帖子的视频 -->
+<view wx:if="{{newsDetail.mediaList[0].status ==2 && faceShow}}" class='h450' data-notetype="{{newsDetail.mediaList[0].status}}" bindtap='playPostVideo' style="background-size: cover;background-image:url({{newsDetail.mediaList[0].firstImg?newsDetail.mediaList[0].firstImg:noDataImg1}}) ;">
+  <image class="w100 h100  " style='margin-top:175rpx;margin-left:346rpx' src="{{playBtn}}"></image>
+</view>
+<video wx:if="{{newsDetail.mediaList[0].status ==2 && videoShow}}" bindended="playEnd" style="height:450rpx;width:100vw;" src="{{newsDetail.mediaList[0].url}}" autoplay controls></video>
+<view class="w690 mgLeft30 mgTop30 fs30 fc-444 lh45 newLine">{{newsDetail.context}}</view>
+<view class="padding_10_30 ">
+  <view class='mgTop15 fr h60 lh60 dlb'>
+    <!-- 举报/删除、点赞和收藏 -->
+    <view wx:if="{{handleType == 'report' && !isAuthor}}" class='dlb fl w60 h60 tc'  data-report="{{newsDetail.isReport}}"  bindtap='reportNews'>
+      <image class="w32 h32" src="{{newsDetail.isReport?reported:reportImg}}" ></image>
+    </view>
+    <view  wx:if="{{handleType == 'delete' || isAuthor}}" class='dlb fl w60 h60 tc' data-report="{{newsDetail.isReport}}" bindtap='deleteNews'>
+      <image class='w36 h36 '  src="{{deleteImg}}" ></image>
+    </view>
+    <view class='dlb fl mgLeft30 w60 h60 tc'  data-islike="{{newsDetail.isPraise}}"  bindtap='likeNews'>
+      <image class='w34 h30 ' src="{{newsDetail.isPraise ==1?fullLike:halfLike}}"></image>
+    </view>
+    <view class='dlb fl mgLeft30 w60 h60 tc' data-collect="{{newsDetail.isCollect}}" data-user="{{newsDetail.userNumber}}" data-num="{{newsDetail.forumNumber}}" bindtap='collectNews' >
+      <image class='w34 h32 ' src="{{newsDetail.isCollect ==1?fullStar:halfStar}}"></image>
+    </view>
+  </view>
+</view>
+<view class='clearB'></view>
+<!-- 发布人信息 -->
+<view class='w690 mgLeft30 mgTop10 h100 lh100'>
+  <image class='w84 h84 mgTop8 fl bRadius50' src="{{newsDetail.headImg?newsDetail.headImg:noHeadImg}}" data-num="{{newsDetail.userNumber}}" bindtap='lookOtherPage'></image>
+  <view class="fl fs30 fc-666 w400 h100 lh100 omit mgLeft30">{{newsDetail.nickName}}</view>
+  <view class="w156 h62 lh60 dlb fr tc bg-28d7cc bRadius30 mgTop20 fs28 fc-fff" data-about="{{newsDetail.isFollow}}" bindtap='about'>{{newsDetail.isFollow == 1? '已关注':'关注'}}</view>
+</view>
+<view class='line-e8 mgTop30'></view>
+<!-- 评论详情 -->
+<view class="h60 lh60 fs28 fc-444 mgLeft30 mgTop50">全部评论
+  <view class='fr mgRight30 w60 h60 ' bindtap='lookAgreement' data-status="open">
+    <image class='mgLeft30 w30 h36 mgTop10' src="{{orderImg}}"></image>
+  </view>
+</view>
+<!-- 暂无评论提示 -->
+<view wx:if="{{commentList.length==0 && noCommentData}}" class="mgTop10 tc ">
+  <image class="w280 h220 dlb" src="/images/public/mypost_icon_com_no@3x.png"></image>
+  <text class="db fs28 fc-999 mgTop20">暂无评论</text>
+  <view class='h30'></view>
+</view>
+<!-- 评论列表显示 -->
+<block wx:for="{{commentList}}" wx:for-item="v" wx:key="index">
+  <view class="{{index > 4?'dn':'db'}}">
+    <view class="w690 mgLeft30 mgTop30 h100  ">
+      <image class='w72 h72 fl bRadius50 mgTop15' src="{{v.headImg?v.headImg:noHeadImg}}" data-num="{{v.userNumber}}" bindtap='lookOtherPage'></image>
+      <view class=" fl mgLeft30 dlb">
+        <view class="w300 omit h40 lh40 mgTop20 fs26 fc-666">{{v.nickName}}</view>
+        <view class="h40 lh40 fs16 fc-999">{{v.commentTime}}</view>
+      </view>
+      <!-- 举报、数量、点赞数图标 -->
+      <view class="fr mgTop15">
+        <image class="padRight60 w30 h30 vMiddle" data-isreport="{{v.isReport}}" data-cid="{{v.commentId}}" bindtap='commentReport' src="{{v.isReport==1?banImg:'/images/found/found_icon_de_in@3x.png'}}"></image>
+        <image class="padRight60 w30 h30 vMiddle" data-cid="{{v.commentId}}" bindtap='inputGetFocus' src="/images/found/found_icon_de_re@3x.png"></image>
+        <image class="padRight20 w30 h30 vMiddle" data-islike="{{v.isPraise}}" data-cid="{{v.commentId}}" bindtap='commentary' src="{{v.isPraise ==1?fullLike:'/images/found/found_icon_de_go@3x.png'}}"></image>
+        <text class="fs24 fc-666 ">{{v.commentPraise}}</text>
+      </view>
+    </view>
+    <!-- 评论内容部分 -->
+    <view class="w690 mgLeft30 mgTop10 ">
+      <view class=" fr w590 ">
+        <view class="lh40 fs fc-666 fs24">{{v.commentContext}}</view>
+        <view class=" mgTop10 bRadius20 bg-eee" wx:if="{{v.hfPage != null &&  v.hfPage.dataList.length>0}}" data-cid="{{v.commentId}}" bindtap="answerPage">
+          <view class='' style='height:6rpx;'></view>
+          <block wx:for="{{v.hfPage.dataList}}" wx:for-item="sv" wx:key="">
+            <text class="fc-999 db lh35 fs20 mgLeft20 paddingR20 ">
+              <text class="fc-28d7cc">{{sv.nickName}}</text> ：{{sv.commentContext}}
+            </text>
+          </block>
+          <view class='clearB'></view>
+          <view class="lh40 fc-666 fs20 mgLeft20 {{v.hfPage.count > 2 ?'db':'dn'}}">
+            <text class=''>查看全部回复\t></text>
+          </view>
+          <view class='' style='height:10rpx;'></view>
+        </view>
+      </view>
+    </view>
+    <view class="clearB"></view>
+    <view class='line-e8 mgTop30'></view>
+  </view>
+</block>
+<view class="fs28 fc-444 mgLeft30 h80 lh80 tc {{commentList.length>5?'db':'dn'}}" bindtap='commentPage'>查看全部评论</view>
+<view class='bg-f8 h20'></view>
+<!-- 热门推荐 -->
+<view class="fs28 fc-444 mgLeft30 mgTop30">热门推荐</view>
+<scroll-view scroll-x style='display:flex;white-space: nowrap;' class="h330 mgTop30">
+  <block wx:for="{{recommendList}}" wx:for-item="v" wx:key="index">
+    <view class='w220 mgLeft30' style='display:inline-block;'>
+      <image class="hotImg w230 h230 db " mode='aspectFill' src="{{v.faceImg}}" data-fnum="{{v.forumNumber}}" data-unum="{{v.userNumber}}" bindtap='lookNewsDetail'></image>
+      <view class='h80'>
+        <image class='w44 h44 fl  mgTop15 bRadius50' src="{{v.headImg?v.headImg:noHeadImg}}"></image>
+        <view class=" fl mgLeft15 dlb mgTop15">
+          <view class="db w140 fs20 fc-666" style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis'>{{v.nickName}}</view>
+          <view class="fs12 fc-999">{{v.createTime}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+</scroll-view>
+<view class='clearB'></view>
+<!-- 举报类型选择面板 -->
+<i-action-sheet visible="{{ showReport }}" actions="{{ actions1 }}" show-cancel bind:cancel="handleAction" bind:click="handleAction" />
+
+<i-modal visible="{{ showModal }}" bind:ok="handleClose" bind:cancel="handleClose">
+  <view>确定举报该帖子？</view>
+</i-modal>
+
+<i-modal visible="{{ showDelete }}" bind:ok="deleteClose" bind:cancel="deleteClose">
+  <view>确定删除该帖子？</view>
+</i-modal>
+
+<!-- 使用发布评论模板 -->
+<template is="comment" data="{{inputValue,autoFocus,disable}}"></template>
+<!-- 使用发帖协议提示模板 -->
+<template is="agreement" data="{{showAgreement}}"></template>
+
+<!-- 引入模板 -->
+<import src="/pages/template/agreement.wxml" />
+<import src="/pages/template/comment.wxml" />

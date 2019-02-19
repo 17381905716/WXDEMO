@@ -1,0 +1,18 @@
+<!-- 发帖协议 -->
+<template name="agreement">
+  <cover-view class="drawer_screen" bindtap='lookAgreement' data-status="close" wx:if="{{showAgreement}}"></cover-view>
+  <cover-view animation="{{animationData}}" class="drawer_box2" wx:if="{{showAgreement}}" style='margin-top:-10%'>
+    <cover-view class='mgLeft60 w630  bg-fff bRadius30' style="width:600rpx;height:660rpx;">
+      <cover-view class='h30'></cover-view>
+      <cover-view class='h60 lh60 fs30 fc-666 tc'>发帖协议</cover-view>
+      <cover-view class='mgLeft30 mgTop15 fs24 fc-999 ' style='width:540rpx;'>
+        <cover-view class='newLine lh45' style='width:540rpx;white-space:pre-wrap'>用户在使用本发帖服务之前，应当仔细阅读本协议，并同意遵守本协议以及所有论坛规则后方可成功发帖，一旦用户注册成功，则用户与本论坛之间自动形成协议关系，用户应当受本协议及所有发帖规则的约束。用户在使用特殊的服务或产品时，应当同意接受相关协议后方能使用。</cover-view>
+      </cover-view>
+      <cover-view class="fs20 fc-999 tc mgTop40">
+        <cover-view class='dlb'>点击按钮即表示同意</cover-view>
+        <cover-view class='dlb fc-28d7cc mgLeft15' bindtap='agreementPage'>《发帖协议》</cover-view>
+        <cover-view class='w380 h80 lh80 mgLeft110 mgTop30 tc fs32 fc-fff bg-28d7cc bRadius40' bindtap='lookAgreement' data-status="close">同意本协议</cover-view>
+      </cover-view>
+    </cover-view>
+  </cover-view>
+</template>

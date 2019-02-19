@@ -1,0 +1,9 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "i-toast": "../../../dist/toast/index",
+    "i-action-sheet": "../../../dist/action-sheet/index",
+    "i-modal": "../../../dist/modal/index",
+    "i-load-more": "../../dist/load-more/index"
+  }
+}

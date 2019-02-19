@@ -1,0 +1,76 @@
+<view class='line-e8 wth100 psnF left0 top0'></view>
+<!-- 收藏的帖子和视频切换 -->
+<block wx:for="{{select}}" wx:for-item="v" wx:key="index">
+  <view class="wth33 h100 lh100 tc fl fs28 {{v.checked == true?'line-28d7cc fc-28d7cc':'fc-666'}}" data-type="{{v.type}}" bindtap='select'>{{v.text}}</view>
+</block>
+<view class='clearB'></view>
+<view class=' line-e8'></view>
+<!-- 收藏的帖子 -->
+<view wx:if="{{collectData.length>0 && select[0].checked}}" wx:for="{{collectData}}" wx:for-item="v" wx:key="index">
+  <view class='padding30 psnR' data-num="{{v.passiveCollect}}" data-type="{{v.collectType}}" data-unum="{{v.userNumber}}"  bindtap='detailPage'>
+    <image class='w280 h220 fl bRadius20' mode="aspectFill" data-num="{{v.passiveCollect}}" bindload='loadSuccess' src="{{v.success?v.img:noDataImg}}" ></image>
+    <image class=" w60 h60 psnA {{v.status ==2 ?'dlb':'dn'}}" style='top:110rpx;left:140rpx;' src="{{playBtn}}"></image>
+    <view class='w380 h220 fl mgLeft30 mgTop15' >
+      <view class="h100 lh40 fs24 fc-444 tl">{{v.content}}</view>
+      <view class="mgTop15 h40 lh40">
+        <image class="fl mgTop10 bRadius50 w46 h46 " src="{{v.headImg}}"></image>
+        <text class="fl dlb w300 omit mgTop10 mgLeft20 fs24 fc-999">{{v.nickName}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='clearB'></view>
+</view>
+<!-- 收藏的视频 -->
+<view wx:if="{{collectVideo.length>0 && select[1].checked}}" wx:for="{{collectVideo}}" wx:for-item="v" wx:key="index">
+  <view class='padding30 psnR' data-num="{{v.passiveCollect}}" data-type="{{v.collectType}}" data-unum="{{v.userNumber}}"  bindtap='detailPage'>
+    <image class='w280 h220 fl bRadius20' mode="aspectFill" data-num="{{v.passiveCollect}}" bindload='loadSuccess' src="{{v.success?v.img:noDataImg}}" ></image>
+    <image class=" w60 h60 psnA {{v.status ==2 ?'dlb':'dn'}}" style='top:110rpx;left:140rpx;' src="{{playBtn}}"></image>
+    <view class='w380 h220 fl mgLeft30 mgTop15' >
+      <view class="h100 lh40 fs24 fc-444 tl">{{v.content}}</view>
+      <view class="mgTop15 h40 lh40">
+        <image class="fl mgTop10 bRadius50 w46 h46 " src="{{v.headImg}}"></image>
+        <text class="fl dlb w300 omit mgTop10 mgLeft20 fs24 fc-999">{{v.nickName}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='clearB'></view>
+</view>
+<view wx:if="{{ (collectData.length ==0 && select[0].checked) || (collectVideo.length ==0 && select[1].checked) || (collectFitness.length ==0 && select[2].checked) }}" class="marginTop30" > 
+  <view>
+    <image class="w280 h220 mgLeft235" src="/images/my/collect_icon@3x.png"></image>
+  </view>
+  <view class="fs28 fc-999 tc mgTop20">暂时没有收藏</view>
+</view>
+
+<!-- 健身房列表 -->
+<view wx:if="{{collectFitness.length>0 && select[2].checked}}" class="w690 mgLeft30">
+  <block wx:for="{{collectFitness}}" wx:key="index">
+    <template is="fitness" data="{{...item,openImg,closeImg,starImg,noStarImg,array}}">
+    </template>
+  </block>
+</view>
+
+<!-- 健身房模板 -->
+<template name="fitness">
+  <view class='bg-fff w690 bRadius20 mgTop30 psnR '>
+    <image class='w100 h100 psnA right0 top0' src="{{stateBusiness==1?openImg:stateBusiness==2?closeImg:''}}"></image>
+    <image class="w690 h380 bRadius20 " mode="aspectFill" bindload='loadSuccess' data-indeximg="{{fitnessIndexImg}}" data-number="{{fitnessNumber}}" src="{{fitnessIndexImg?fitnessIndexImg:noDataImg}}" bindtap='toDetail'></image>
+    <view class="w630  mgLeft30">
+      <view class="h60 lh60">
+        <text class="fl dlb w340 fs28 fc-333 omit">{{fitnessName}}</text>
+        <view class='fr dlb'>
+          <image class="markImg mgLeft15 mgTop20" src="/images/index/home_icon_ad@3x.png"></image>
+          <text class="fs28 fc-666 ">距离：{{distance}}km</text>
+        </view>
+      </view>
+      <view class='clearB'></view>
+      <view>
+        <text class='fs24 fc-666 '>综合评分</text>
+      <block wx:for="{{array}}" wx:key="">
+        <image class='w25 h25 mgLeft15' src="{{level>index?starImg:noStarImg}}"></image>
+      </block>
+      </view>
+    </view>
+    <view class='h20'></view>
+  </view>
+</template>

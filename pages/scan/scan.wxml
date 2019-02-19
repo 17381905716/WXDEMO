@@ -1,0 +1,10 @@
+<i-toast id="toast" />
+
+<view class='line-e8 '></view>
+<view class="tc mgTop100">
+  <image style="width:220rpx;height:220rpx;" src="/images/public/img@2x.png"></image>
+</view>
+<view class="fs36 fc-444 tc mgTop50">欢迎使用纯氧健身</view>
+<view class="tc mgTop100">
+  <text class="w520 h100 lh100 dlb fs32 fc-fff bg-28d7cc" bindtap="scanCode" style='border-radius:50rpx'>立即扫码</text>
+</view>

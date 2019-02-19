@@ -1,0 +1,52 @@
+<view class="w720 h80  mgLeft30 ">
+  <image class='w40 h40 mgTop15' style='' src='/images/public/course_icon_logo@3x.png'></image>
+  <!-- 扫码图片 -->
+  <view class='fr w80 h60 ' bindtap='toScanPage'>
+    <image class="w40 h40 fr mgTop10 mgRight30" src="/images/dynamic/home_icon_scan@2x.png"></image>
+  </view>
+  <!-- 搜索框 -->
+
+  <view class="weui-search-bar__form fr w520 mgRight30">
+    <view class="weui-search-bar__box bg-eee">
+      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+      <input type="text" class="weui-search-bar__input " placeholder="输入你想看的视频" disabled='true' bindtap="searchVideo" />
+    </view>
+  </view>
+</view>
+<!-- 轮播图片 -->
+<view wx:if="{{advertImg.length==0}}">
+  <image class="w690 h310 mgLeft30 mgTop20 bRadius20" mode="aspectFill" src="{{noDataImg1}}"> </image>
+</view>
+<view wx:if="{{advertImg.length>0}}">
+  <swiper class="w690 h310 mgLeft30 mgTop20" indicator-color="rgba(255, 255, 255, 1)" indicator-active-color="#28d7cc" indicator-dots="{{advertImg.length>1?true:false}}" autoplay="true" circular="true" interval="5000" duration="1000">
+    <block wx:for="{{advertImg}}" wx:key="index">
+      <swiper-item>
+        <image class="w690 h310 bRadius20" mode="aspectFill" data-url="{{item.advertUrl}}" data-type="{{item.advertUrlType}}" src="{{item.advertImg}}" data-id="{{index}}" bindtap='advertEvent' />
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<!-- 根据条件进行搜索 -->
+<scroll-view scroll-x style='w690 display:flex;white-space: nowrap;' class=" mgTop20 mgRight30">
+  <block wx:for="{{searchType}}" wx:for-item="v" wx:key="index">
+    <text class="dlb h80 lh80 fs28 mgLeft40 {{v.checked == true ? 'fc-28d7cc line-28d7cc' : 'fc-999'}}" data-id="{{v.courseTypeId}}" bindtap="search">{{v.courseTypeName}}</text>
+  </block>
+</scroll-view>
+
+<!-- 没有课程列表数据 -->
+<view wx:if="{{courseList.length==0 && noCourseList}}" class="mgTop20 tc">
+  <image class="w280 h220 " src="/images/public/vidio_icon_no@3x.png"></image>
+  <view class="fs28 fc-999 tc mgTop20">暂时没有视频推荐</view>
+</view>
+
+<!-- 视频列表 -->
+<view class="w690 mgLeft30">
+  <block wx:for="{{courseList}}" wx:key="index">
+    <template is="{{item.courseSperm == 1?'item1':'item2'}}" data="{{...item}}"></template>
+    <view class="clearB"></view>
+  </block>
+</view>
+<view class="h40"></view>
+
+<!-- 引入课程模板使用 -->
+<import src="/pages/template/course.wxml" />                                                       

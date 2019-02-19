@@ -1,0 +1,44 @@
+<!-- 视频搜索框 -->
+<view class="weui-search-bar">
+  <view class="weui-search-bar__form ">
+    <view class="weui-search-bar__box ">
+      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+      <input type="text" maxlength='50' class="weui-search-bar__input " placeholder="输入你想看的视频" bindinput="searchVideo" />
+    </view>
+  </view>
+</view>
+<view class='clearB'></view>
+<block wx:for="{{videoData}}" wx:for-item="v" wx:key="index">
+  <view class='w690 padding30 mgTop30' data-classNumber="{{v.classNumber}}"  bindtap='videoDetailPage'>
+    <!-- <image class="fl w260 h150 bRadius15" src="{{v.classHeadUrl}}" bindtap='videoDetailPage'></image> -->
+    <view class="fl dlb psnR">
+      <image class="fl w230 h150 bRadius15" mode="aspectFill" src="{{v.faceImg?v.faceImg:noDataImg1}}"></image>
+      <!-- <image class=" w80 h80 psnA {{v.faceImg?'dlb':'dn'}}" style='top:35rpx;left:75rpx;' src="{{playBtn}}"></image> -->
+    </view>
+    <view class='w400 fl h80  mgTop40 mgLeft30'>
+      <view class="fs20 fs30 fc-333">{{v.classTitle}}</view>
+      <view class="fs28 fc-ccc mgTop30">
+        <image class='w30 h30 paddingR20' src="{{playImg}}"></image>
+        <text class="paddingR60">{{v.classPlay}}次</text>
+        <!-- <image class='w30 h30 paddingR20' src="{{likeImg}}"></image>
+        <text>{{v.classPraise}}</text> -->
+        <view class="fr mgTop5 fs28">
+          <image class='w30 h30 paddingR20' src="/images/public/found_icon_like@3x.png"></image>
+          <text class="paddingR60">{{v.classPraise}}</text>
+          <image class='w30 h30 paddingR20' src="/images/public/course_icon_com@3x.png"></image>
+          <text>{{v.commentCount}}</text>
+        </view>
+      </view>
+
+
+    </view>
+  </view>
+  <view class='clearB'></view>
+</block>
+
+<view wx:if="{{noData && videoData.length == 0}}" class="marginTop30">
+  <view>
+    <image class="w280 h220 mgLeft235" src="/images/public/vidi_icon_no@3x.png"></image>
+  </view>
+  <view class="fs28 fc-999 tc mgTop20">暂无搜索视频</view>
+</view>

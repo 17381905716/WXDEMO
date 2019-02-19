@@ -1,0 +1,4 @@
+@import '/pages/found/detail/detail.wxss';
+page{
+  background: #f6f6f6;
+}

@@ -1,0 +1,32 @@
+<!-- 健身房名称 -->
+<view class="weui-search-bar">
+  <view class="weui-search-bar__form ">
+    <view class="weui-search-bar__box ">
+      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+      <input type="text" maxlength='50' class="weui-search-bar__input " placeholder="输入健身房名称" bindinput="valueSearch" />
+    </view>
+  </view>
+</view>
+
+<!-- 健身房列表 -->
+<view class="w690 mgLeft30">
+  <block wx:for="{{fitness}}" wx:key="index">
+    <template is="fitness" data="{{...item,openImg,closeImg,starImg,noStarImg,array}}">
+    </template>
+  </block>
+</view>
+<view class='h40'></view>
+<!-- 加载更多数据提示 -->
+<view wx:if="{{loading}}">
+  <i-load-more/>
+</view>
+<!-- 没有健身房列表数据 -->
+<view wx:if="{{fitness.length==0 && noFitnessData}}" class="mgTop50">
+  <view>
+    <image class="w280 h220 mgLeft235" src="/images/public/vidi_icon_no@3x.png"></image>
+  </view>
+  <view class="fs28 fc-999 tc mgTop20">暂无搜索健身房</view>
+</view>
+
+<!-- 引入健身房模板使用 -->
+<import src="/pages/template/fitness.wxml" />

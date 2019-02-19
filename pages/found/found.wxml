@@ -1,0 +1,50 @@
+<i-toast id="toast" />
+<!-- 分类进行搜索 -->
+<view class="wth100 h80 bg-fff psnF left0 top0" style='z-index:999'>
+  <!-- <view class='w650 h80 lh80 fl'>
+    <i-tabs current="{{ current_tab }}" color="#28d7cc" scroll bindchange="choose">
+      <block wx:for="{{sType}}" wx:key="">
+        <i-tab class="mgLeft15" key="{{index}}" title="{{item.name}}"></i-tab>
+      </block>
+    </i-tabs>
+  </view> -->
+
+  <scroll-view scroll-x style='display:flex;white-space: nowrap;width:650rpx;' class="fl  bg-fff">
+    <block wx:for="{{sType}}" wx:for-item="v" wx:key="index">
+      <text style='' class="dlb h80 lh80 fs28 {{index > 0 ? ' mgLeft40' : ' mgLeft30'}} {{v.checked == true ? 'fc-28d7cc line-28d7cc' : 'fc-999'}}" data-type="{{v.type}}" data-typeid="{{v.typeId}}" data-index="{{index}}" bindtap="choose">{{v.name}}</text>
+    </block>
+  </scroll-view>
+
+  <view class='w80 h80 lh80 fr mgTop10' bindtap='toaddNews'>
+    <image class="w38 h32 mgLeft20" src="/images/public/found_icon_iss@3x.png"></image>
+  </view>
+</view>
+
+<!-- 帖子内容列表 -->
+<view class=''>
+  <view class='h80'></view>
+  <view class=" fl" style='width:46%;'>
+    <block wx:for="{{newsData}}" wx:key="">
+      <template is="item" data="{{...item}}" wx:if="{{index%2==0}}"></template>
+    </block>
+  </view>
+  <view class=" fl mgLeft15" style='width:46%;'>
+    <block wx:for="{{newsData}}" wx:key="">
+      <template is="item" data="{{...item}}" wx:if="{{index%2==1}}"></template>
+    </block>
+    <view class="clearB"></view>
+    <view class="h40"></view>
+  </view>
+</view>
+
+<!-- 没有发布帖子-->
+<view wx:if="{{newsData.length==0 && noData}}" class="marginTop30 ">
+  <view class=''>
+    <image class="w280 h220 mgLeft235" src="/images/public/vidi_icon_no@3x.png"></image>
+  </view>
+  <text class="db tc fs28 fc-999 mgTop20">暂无发现内容</text>
+  <view class='h30'></view>
+</view>
+
+<!-- 引入帖子模板模板使用 -->
+<import src="/pages/template/posted.wxml" />

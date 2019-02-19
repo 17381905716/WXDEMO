@@ -1,0 +1,46 @@
+<view class="wth100 line-e8 psnF left0 top0"></view>
+<i-toast id="toast" />
+<!-- 修改昵称 -->
+<form wx:if="{{pageType =='nickname'}}" bindsubmit="updateNick">
+  <view class='fs28 fc-999 mgLeft30 mgTop30'>昵称</view>
+  <view class="fs36 fc-5d mgLeft30 mgTop30">
+    <input class='w690 line-e8 h60' type='text' name="nickname" maxlength='30' value='{{nickName}}'></input>
+  </view>
+  <button form-type='submit' class='w690 mgLeft30 mgTop50 fs36 h100 lh100 tc fc-fff bg-28d7cc' disabled='{{disabled}}'>保存</button>
+</form>
+
+<!-- 绑定手机号 -->
+<form wx:if="{{pageType == 'phone'}}" bindsubmit='updatePhone'>
+  <view class='mgLeft50 mgTop30'>
+    <view class='fs28 fc-999'>手机号</view>
+    <view class='mgTop30'>
+      <input class='w300 mgTop10 fl fs32 fc-999' name="phone" type='number' value='{{phone}}' bindinput='getPhoneVal' placeholder='请输入手机号'></input>
+      <button class='w190 fr mgRight60 fs24  h70 lh70 bg-ccc bRadius35 tc fc-fff' disabled="{{forbidden}}" bindtap='getCode'>{{codename}}</button>
+    </view>
+    <view class='clearB'></view>
+    <view class="w690 h50 line-e8"></view>
+    <view class='fs28 fc-999 mgTop50'>验证码</view>
+    <view class='mgTop30'>
+      <input class='w300 mgTop10 fl fs32 fc-999' name="code" type='number' value='{{code}}' bindinput='getCodeVal' placeholder='请输入验证码'></input>
+    </view>
+    <view class='clearB'></view>
+    <view class="w690 h50 line-e8"></view>
+    <view class='fs24 fc-999 mgTop50'>更换手机后，下次登录可直接使用新号码登录</view>
+  </view>
+  <view class='clearB'></view>
+
+  <button style='border-radius:50rpx;margin-left:160rpx;' form-type='submit' class='w420 bRadius35 mgLeft120 mgTop150 fs36 h100 lh100 tc fc-fff bg-28d7cc' disabled='{{disabled}}'>保存</button>
+</form>
+
+<!-- 修改个人简介 -->
+
+<form wx:if="{{pageType == 'introduct'}}" bindsubmit='introduct'>
+  <view class='mgLeft30 mgTop30 fs28 fc-999'>个人简介</view>
+  <view class="w690 h240 mgLeft30 mgTop20 psnR">
+    <!-- <view class="h25"></view> -->
+    <textarea name="content" class="w650 h240 padding20 border-e8 bRadius20 fc-666 fs30 lh40" maxlength='500' placeholder='' value="{{introduction?introduction:''}}" bindinput='getCont'></textarea>
+    <view class="fr fs30 psnA right20 bottom020 fc-999">{{num}}/100</view>
+  </view>
+    <view class='clearB'></view>
+    <button form-type='submit' class='w690 mgLeft30 mgTop100 fs36 h100 lh100 tc fc-fff bg-28d7cc' disabled='{{disabled}}'>保存</button>
+</form>

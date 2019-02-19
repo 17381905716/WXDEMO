@@ -1,0 +1,15 @@
+<i-toast id="toast" />
+<view class="fs28 fc-999 mgLeft30 mgTop50">定位城市</view>
+<view class='fs28 fc-444 tc w210 h80 lh80 tc bg-ef fl mgLeft30 mgTop30' data-latitude="{{latitude}}" data-longitude="{{longitude}}" bindtap='changeCity' data-name="{{realCity}}" data-id="{{cityId}}">
+  <image class="mark" src="/images/public/home_icon_city_ad@3x.png"></image>
+  <text decode='true' space='true' style='margin-top:-30rpx;'>&nbsp;&nbsp;{{realCity}}</text>
+</view>
+<view class='clearB'></view>
+<view class="fs28 fc-999 mgLeft30 mgTop50">已开通城市</view>
+<block wx:for="{{cityList}}" wx:key="index">
+  <view class="fs28 fc-444 tc w210 h80 lh80 tc bg-ef fl mgLeft30 mgTop30" data-longitude="{{item.longitude}}" data-latitude="{{item.latitude}}" bindtap='changeCity' data-name="{{item.cityName}}" data-id="{{item.cityId}}">{{item.cityName}}</view>
+</block>
+<view class='clearB'></view>
+<block wx:for="{{cityList}}" wx:key="index"> 
+  <view class="fs28 fc-444 h100 lh100 w690 mgLeft30 line-ccc" data-longitude="{{item.longitude}}" data-latitude="{{item.latitude}}"  bindtap='changeCity' data-name="{{item.cityName}}" data-id="{{item.cityId}}">{{item.cityName}}</view>
+</block>

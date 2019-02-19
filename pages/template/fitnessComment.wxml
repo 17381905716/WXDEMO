@@ -1,0 +1,38 @@
+<!--  下面是一个模块 -->
+<template name="fitnessComment">
+  <view class='w690 mgLeft30 mgTop30 h100 '>
+    <image class='w72 h72 fl bRadius50 mgTop15 ' src="{{headImg?headImg:noHeadImg}}" data-num="{{usernumber}}" bindtap='lookOtherPage'></image>
+    <view class=" fl mgLeft30 dlb">
+      <view class="w280 omit h40 lh40 mgTop20 fs26 fc-666"> {{nickName}}</view>
+      <view class="h40 lh40 fs16 fc-999"> {{comtime}}</view>
+    </view>
+    <view class="fr mgTop25">
+      <text class='fs24 fc-666 '>综合评分</text>
+      <block wx:for="{{array}}" wx:key="">
+        <image class='w25 h25 mgLeft15' src="{{avglevel>index?starImg:noStarImg}}"></image>
+      </block>
+    </view>
+  </view>
+  <view class="w690 mgLeft30  ">
+    <view class="fl h50 "></view>
+    <view class="fr w590">
+      <view class="lh40 fs fc-666 fs24 newLine">{{comtext}}</view>
+    </view>
+  </view>
+  <view wx:if="{{img1}}" class="w690 mgLeft30 mgTop15 ">
+    <view class="fl h100 "></view>
+    <view class="fr w590 mgTop15">
+      <image wx:if="{{img1}}" class='w185 h185 ' src="{{img1}}" data-cid="{{cid}}" bindtap='previewCommentImage'></image>
+      <image wx:if="{{img2}}" class='w185 h185 mgLeft15' src="{{img2}}" data-cid="{{cid}}" bindtap='previewCommentImage'></image>
+      <image wx:if="{{img3}}" class='w185 h185 mgLeft15' src="{{img3}}" data-cid="{{cid}}" bindtap='previewCommentImage'></image>
+    </view>
+  </view>
+  <view wx:if="{{com1}}" class="w690 mgLeft30 mgTop15 ">
+    <view class="fl h100 "></view>
+    <view class="fr w590">
+      <view  class="lh40 fs fc-999 fs24 newLine">商家回复：{{com1}}</view>
+    </view>
+  </view>
+  <view class="clearB"></view>
+  <view class=' line-e8 mgTop15'></view>
+</template>

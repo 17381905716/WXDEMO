@@ -1,0 +1,112 @@
+{
+  "pages":[
+
+    "pages/index/userLogin/userLogin",
+
+    "pages/dynamic/dynamicDetail/dynamicDetail",
+    "pages/dynamic/dynamic",
+    "pages/dynamic/forward/forward",
+
+    "pages/index/useVoucher/useVoucher",
+    "pages/index/payOrder/payOrder",
+    "pages/index/evaluate/evaluate",
+    "pages/index/searchFitness/searchFitness",
+    "pages/index/detail/detail",
+    "pages/index/index",
+    "pages/index/outPage/outPage",
+    "pages/index/changeCity/changeCity",
+    "pages/index/msg/msg",
+    "pages/index/map/map",
+    "pages/index/userMsg/userMsg",
+    "pages/index/payResult/payResult",
+    
+    "pages/my/voucher/voucher",
+    "pages/my/bindPhone/bindPhone",   
+    "pages/my/my",
+    "pages/my/orderVealuate/orderVealuate",
+    "pages/my/feedback/feedback",
+    "pages/my/myMember/myMember",
+    "pages/my/order/order",
+    "pages/my/presentRecord/presentRecord",
+    "pages/my/historyRecord/historyRecord",
+    "pages/my/recharge/recharge",
+    "pages/my/lookOther/lookOther",
+    "pages/my/drawcash/drawcash",
+    "pages/my/buyCard/buyCard",
+    "pages/my/aboutUs/aboutUs",
+    "pages/my/myAttention/myAttention",
+    "pages/my/inviteFriend/inviteFriend",
+    "pages/my/customerServer/customerServer",
+    "pages/my/updateUser/updateUser",
+    "pages/my/updateUserinfo/updateUserinfo",
+    "pages/my/posted/posted",
+    "pages/my/collect/collect",
+    "pages/my/agreement/agreement",
+
+    "pages/course/course",
+    "pages/course/searchVideo/searchVideo",
+    "pages/course/comment/comment",
+    "pages/course/detail/detail",
+    "pages/course/playDetail/playDetail",
+    
+    "pages/found/found",
+    "pages/found/detail/detail",
+    "pages/found/addNews/addNews",
+    "pages/found/loadApp/loadApp",
+    "pages/found/comment/comment",
+    "pages/found/answer/answer",
+    "pages/found/agreement/agreement",
+
+    "pages/scan/scan",
+    "pages/scan/useOrder/useOrder"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle":"black"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于计算距离展示"
+    }
+  },
+
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#28d7cc",
+    "backgroundColor": "#ffffff",       
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/images/tabbar/home@2.png",
+        "selectedIconPath": "/images/tabbar/home.png"
+      },
+      {
+        "pagePath": "pages/course/course",
+        "text": "课程",
+        "iconPath": "/images/tabbar/course@2.png",
+        "selectedIconPath": "/images/tabbar/course.png"
+      },
+      {
+        "pagePath": "pages/index/msg/msg",
+        "text": "消息",
+        "iconPath": "/images/tabbar/news.png",
+        "selectedIconPath": "/images/tabbar/news@2.png"
+      },
+      {
+        "pagePath": "pages/dynamic/dynamic",
+        "text": "发现",
+        "iconPath": "/images/tabbar/found@2.png",
+        "selectedIconPath": "/images/tabbar/found.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "/images/tabbar/my@2.png",
+        "selectedIconPath": "/images/tabbar/my.png"
+      }
+    ]
+  }
+}

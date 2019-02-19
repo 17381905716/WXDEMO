@@ -1,0 +1,24 @@
+<!-- 只有文本轻提示 -->
+<i-toast id="toast" />
+<view class='wth100 line-e8 psnF left0 top0'></view>
+<!-- 充值记录 、购买会员卡记录-->
+<block wx:for="{{listData}}" wx:key="" wx:for-item="v">
+  <view class='w690 mgLeft30 mgTop30 fs24 fc-666'>
+    <view class='db h50'>
+      <text class='fs32 fc-444'>{{v.payText}}</text>
+      <text class='fs32 fc-28d7cc fr'>{{v.payMoney}}元</text>
+    </view>
+    <view class='mgTop10'>
+      <text class=''>{{v.payTimeText}}：{{v.payTime}}</text>
+      <text class='fr'>{{v.successText}}</text>
+    </view>
+  </view>
+  <view class='clearB'></view>
+  <view class='mgTop30 line-e8'></view>
+</block>
+
+<!-- 暂无评论提示 -->
+<view wx:if="{{listData.length==0 && noData}}" class="marginTop30 tc ">
+  <image class="w280 h220 dlb" src="/images/public/mypost_icon_com_no@3x.png"></image>
+  <text class="db fs28 fc-999 mgTop20">暂无记录</text>
+</view>

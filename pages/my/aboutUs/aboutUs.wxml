@@ -1,0 +1,19 @@
+<view class='line-e8 wth100 psnF left0 top0'>
+</view>
+<view class="fs28 psnF left50 top50">
+  <view>
+    <text class="fc-666">版本信息</text>
+    <text class='fr fc-999'>{{aboutData.appMsgVersion}}</text>
+  </view>
+  <view class='fs28 fc-666 mgTop30'>关于我们的介绍</view>
+</view>
+<view class='h120'></view>
+<scroll-view scroll-y class="padding50 fs28 fc-999 lh45 mgTop15" style='width:87vw;height:65vh'>
+  {{aboutData.appMsgIntroduce}}
+</scroll-view>
+<view class='h150'></view>
+<view class=' h200 lh60 fs28 fc-666 psnF left50 bottom0' >
+    <view class="fs28 fc-666 ">商务合作</view>
+    <view class="fs28 fc-999 ">对接人：{{aboutData.appMsgPeople}}</view>
+    <view class="fs28 fc-999  ">电话：{{aboutData.appMsgPhone}}</view>
+  </view>

@@ -1,0 +1,148 @@
+<i-toast id="toast" />
+<view wx:if="{{bannerImg.length==0}}">
+  <image class='wth100 h450' src="{{fitnessData.fitnessIndexImg?fitnessData.fitnessIndexImg:noDataImg1}}"></image>
+</view>
+<!-- bindtap="handletap" bindtouchstart="handletouchtart" bindtouchmove="handletouchmove" bindtouchend="handletouchend" -->
+<view wx:if="{{bannerImg.length>0}}" class="wth100 h450 ">
+  <swiper class="wth100 h450 " indicator-dots="{{false}}" circular="true" autoplay="true" interval="3000" duration="500" current-item-id="{{item.imgType}}" bindchange="switchImage">
+    <block wx:for="{{bannerImg}}" wx:key="index">
+      <swiper-item item-id="{{item.imgType}}">
+        <image class="wth100 h450" src="{{item.fitnessImgUrl}}" bindtap='previewImage' mode="aspectFill" />
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<view wx:if="{{bannerImg.length>0}}" class="wth100 h80 lh80 fs28 fc-666 bg-eee" style=';z-index:999999'>
+  <view class='wth100 h80 lh80 tc' data-type="{{item.imgType}}">
+    <block wx:for="{{imgTypeText}}" wx:key="index">
+      <view class='w200 fl  tc'>
+        <text class="db mgLeft40 {{item.checked?'fc-28d7cc':''}}">{{item.text}}</text>
+      </view>
+    </block>
+  </view>
+
+</view>
+<view class='clearB'></view>
+<view class=''>
+  <view class="fl w500 mgLeft30 fc-444 ">
+    <view class='fs36 mgTop30 omit'>{{fitnessData.fitnessName}}</view>
+    <view class="">
+      <text class='fs24 fc-666 '>综合评分</text>
+      <block wx:for="{{array}}" wx:key="">
+        <image class='w25 h25 mgLeft15' src="{{fitnessData.level>index?starImg:noStarImg}}"></image>
+      </block>
+    </view>
+  </view>
+  <view class="fr mgTop40 mgRight30 w162 h60 lh60 dlb tc border-28d7cc bRadius30 fs28 fc-28d7cc" data-collect="{{fitnessData.isCollect}}" bindtap='cellectShop'> {{fitnessData.isCollect?'已收藏':'收藏店铺'}} </view>
+</view>
+<view class='clearB'></view>
+<!-- 店铺服务 -->
+<view class="fs28 fc-999 mgTop30 mgLeft30">店铺服务
+  <text class='fc-28d7cc'>（{{fitnessData.startBusiness}}-{{fitnessData.stopBusiness}}）</text> </view>
+<view class="w690 mgLeft30 mgTop20">
+  <scroll-view scroll-x style='display:flex;white-space: nowrap;' scroll-with-animation="true" class=" h120 mgRight50">
+    <block wx:for="{{fitnessData.deviceLists}}" wx:for-item="v" wx:key="index">
+      <view class=" w120 h80  mgTop30 mgLeft40 tc" style='display:inline-block;' data-id="{{v.deviceId}}">
+        <image class="w50 h40" src="{{v.deviceImg}}"></image>
+        <view class="fs24 fc-666">{{v.deviceName}}</view>
+      </view>
+    </block>
+    <block wx:for="{{fitnessData.deviceLists}}" wx:for-item="v" wx:key="index">
+      <view class=" w120 h80  mgTop30 mgLeft40 tc" style='display:inline-block;' data-id="{{v.deviceId}}">
+        <image class="w50 h40" src="{{v.deviceImg}}"></image>
+        <view class="fs24 fc-666">{{v.deviceName}}</view>
+      </view>
+    </block>
+  </scroll-view>
+
+  <!--   
+  <scroll-view scroll-x style='display:flex;white-space: nowrap;' class="h330 mgTop30">
+  <block wx:for="{{recommendList}}" wx:for-item="v" wx:key="index">
+    <view class='w220 mgLeft30' style='display:inline-block;'>
+      <image class="hotImg w230 h230 db " mode='aspectFill' src="{{v.faceImg}}" data-fnum="{{v.forumNumber}}" data-unum="{{v.userNumber}}" bindtap='lookNewsDetail'></image>
+      <view class='h80'>
+        <image class='w44 h44 fl  mgTop15 bRadius50' src="{{v.headImg?v.headImg:noHeadImg}}"></image>
+        <view class=" fl mgLeft15 dlb mgTop15">
+          <view class="db w140 fs20 fc-666" style='white-space: nowrap;overflow: hidden;text-overflow: ellipsis'>{{v.nickName}}</view>
+          <view class="fs12 fc-999">{{v.createTime}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+</scroll-view> -->
+
+</view>
+<view class='clearB'></view>
+<view class='w690 mgLeft30 line-e8 mgTop30'></view>
+<!-- 地址 -->
+<view class="w690 h60 mgLeft30 mgTop15 " bindtap='toMapPage'>
+  <image class="fl mgTop25 w20 h25 " src="{{mark}}"></image>
+  <text class='dlb h40 fs28 fc-777 mgTop15 mgLeft15 omit' style='width:600rpx'>{{fitnessData.fitnessAddress}}</text>
+  <image class="w38 h36 mgTop20 fr mgLeft15" src="{{mapMark}}"></image>
+</view>
+<view class='line-e8 mgTop30'></view>
+<!-- 活动列表 -->
+<view class='clearB'></view>
+<view class='mgTop30'>
+  <view class="fl fs32 fc-444 mgLeft30">活动列表</view>
+  <view class="fr mgRight30  fs24  h50 lh50 fc-444">
+    <image class='w25 h25' src="{{useImg2}}"></image>
+    <text class=' mgLeft15'> 随时退</text>
+    <image class='w25 h25 mgLeft40' src="{{useImg2}}"></image>
+    <text class=' mgLeft15'> 过期自动退</text>
+    <image class='w25 h25 mgLeft40' src="{{useImg2}}"></image>
+    <text class=' mgLeft15'> 放心使用</text>
+  </view>
+</view>
+<view class='clearB'></view>
+<block wx:for="{{fitnessData.fitnessActivities}}" wx:for-item="v" wx:key="index">
+  <view class="w690 mgLeft30 mgTop30 h60 lh60 " data-starttime="{{v.groundStartTime}}" data-endtime="{{v.groundStopTime}}" data-depict="{{v.fitnessActivityDescription}}" data-id="{{v.fitnessActivityId}}" data-name="{{v.fitnessActivityName}}" data-money="{{v.fitnessActivityPrice}}"
+    bindtap='buyActive'>
+    <text class="fs30 fc-999 paddingR20">{{v.fitnessActivityName}}</text>
+    <text class="fs24 fc-ccc">{{v.fitnessWeek?'（'+v.fitnessWeek+'可用）':''}}</text>
+    <view style='width:215rpx;' class=" dlb h60 lh60  bRadius30 bg-41dccf fr tc">
+      <image class=" w34 h25 mgLeft30" src="{{activityImg}}"></image>
+      <text class=" fs26 fc-fff mgLeft15 mgRight30">{{v.fitnessActivityPrice}}元</text>
+    </view>
+  </view>
+  <view class='w690 mgLeft30 line-e8 h30'></view>
+</block>
+<view class='clearB'></view>
+<!-- 跳转购买会员卡页面 -->
+<view class="w690 h140 mgLeft30 mgTop50 bRadius20" style='background-size: cover;background-image:url({{vipBgImg}})' bindtap='buyCardPage'>
+  <view class="fr mgRight50 mgTop40">
+    <text class="fs24 fc-fff paddingR20">立即购买</text>
+    <image class="" style='width:10rpx;height:16rpx;' src="{{rightImg}}"></image>
+  </view>
+</view>
+<!-- 商家电话 -->
+<view class="wth100 mgTop50 line-e8"></view>
+<view class="w690 mgLeft30 mgTop30 h50 lh45" bindtap='callPhone'>
+  <text class='fs28 fc-777'>商家电话：{{fitnessData.fitnessPhone}}</text>
+  <image class="w38 h30 mgTop10 fr  " src="{{phone}}"></image>
+</view>
+<view class="wth100 mgTop30 line-e8"></view>
+
+<!-- 全部评论 -->
+<view wx:if="{{commentList.length>1}}" class="h60 lh60 fs32 fc-444 mgLeft30 mgTop40">全部评论
+  <text class='fs24 fc-666'>（{{count}}条）</text>
+</view>
+<!-- 评论列表 -->
+<block wx:for="{{commentList}}" wx:key="">
+  <view wx:if="{{index<2}}">
+    <template is="fitnessComment" data="{{...item,noHeadImg,starImg,noStarImg,array}}"></template>
+  </view>
+</block>
+<!-- 跳转到查看全部 评论页面 -->
+<navigator wx:if="{{commentList.length>2}}" class="fs28 fc-444 h80 lh80 tc " url='/pages/index/evaluate/evaluate?fitnessNumber={{fitnessNumber}}'>查看全部评论</navigator>
+
+<view class='bg-f8 h20'></view>
+
+<view class="fs32 fc-444 mgTop40 mgLeft30">场馆介绍</view>
+<view class=" w690 mgLeft30 mgTop15 fs28 fc-999">
+  {{fitnessData.fitnessDescription}}
+</view>
+<view class="h25"></view>
+
+<!-- 引入健身房评论模板 -->
+<import src="/pages/template/fitnessComment.wxml" />
